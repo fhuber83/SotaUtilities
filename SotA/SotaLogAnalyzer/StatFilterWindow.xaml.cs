@@ -54,7 +54,7 @@ namespace LogAnalyzer
             SetMaxTime();
 
             regexDate = new Regex(@"^(?<day>\d{2}).(?<month>\d{2}).(?<year>\d{4})$", RegexOptions.Compiled);
-            regexTime = new Regex(@"^(?<hour>\d{2}):(?<minute>\d{2}):(?<second>\d{2})$", RegexOptions.Compiled);
+            regexTime = new Regex(@"^(?<hour>\d{2}):(?<minute>\d{2})(:(?<second>\d{2}))?$", RegexOptions.Compiled);
 
             // Create distinct list of player names
             var allNames = new List<string>();
@@ -86,7 +86,7 @@ namespace LogAnalyzer
 
                 var hour = int.Parse(matchMinTime.Groups["hour"].Value);
                 var minute = int.Parse(matchMinTime.Groups["minute"].Value);
-                var second = int.Parse(matchMinTime.Groups["second"].Value);
+                var second = matchMinTime.Groups["second"].Success ? int.Parse(matchMinTime.Groups["second"].Value) : 0;
 
                 minTime = new DateTime(year, month, day, hour, minute, second);
             }
@@ -103,9 +103,9 @@ namespace LogAnalyzer
                 var month = int.Parse(matchMaxDate.Groups["month"].Value);
                 var year = int.Parse(matchMaxDate.Groups["year"].Value);
 
-                var hour = int.Parse(matchMaxTime.Groups[1].Value);
-                var minute = int.Parse(matchMaxTime.Groups[2].Value);
-                var second = int.Parse(matchMaxTime.Groups[3].Value);
+                var hour = int.Parse(matchMaxTime.Groups["hour"].Value);
+                var minute = int.Parse(matchMaxTime.Groups["minute"].Value);
+                var second = matchMaxTime.Groups["second"].Success ? int.Parse(matchMaxTime.Groups["second"].Value) : 0;
 
                 maxTime = new DateTime(year, month, day, hour, minute, second);
             }
@@ -184,7 +184,7 @@ namespace LogAnalyzer
             {
                 var hour = int.Parse(match.Groups["hour"].Value);
                 var minute= int.Parse(match.Groups["minute"].Value);
-                var second = int.Parse(match.Groups["second"].Value);
+                var second = match.Groups["second"].Success ? int.Parse(match.Groups["second"].Value) : 0;
 
                 if ((hour >= 0 && hour < 24) &&
                     (minute >= 0 && minute < 60) &&
@@ -222,7 +222,7 @@ namespace LogAnalyzer
             {
                 var hour = int.Parse(match.Groups["hour"].Value);
                 var minute = int.Parse(match.Groups["minute"].Value);
-                var second = int.Parse(match.Groups["second"].Value);
+                var second = match.Groups["second"].Success ? int.Parse(match.Groups["second"].Value) : 0;
 
                 if ((hour >= 0 && hour < 24) &&
                     (minute >= 0 && minute < 60) &&
