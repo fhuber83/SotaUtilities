@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantMaster2000", "PlantMas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SotaChatConsole", "SotaChatConsole\SotaChatConsole.csproj", "{9B96BA9A-AAFE-4E33-BF18-17C05685356D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotaLogAnalyzer", "SotaLogAnalyzer\SotaLogAnalyzer.csproj", "{3D4C21BA-1046-4032-8117-70F2B213EB3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9B96BA9A-AAFE-4E33-BF18-17C05685356D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B96BA9A-AAFE-4E33-BF18-17C05685356D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B96BA9A-AAFE-4E33-BF18-17C05685356D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D4C21BA-1046-4032-8117-70F2B213EB3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D4C21BA-1046-4032-8117-70F2B213EB3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D4C21BA-1046-4032-8117-70F2B213EB3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D4C21BA-1046-4032-8117-70F2B213EB3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

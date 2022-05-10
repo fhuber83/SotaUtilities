@@ -1,0 +1,57 @@
+﻿<Window x:Class="LogAnalyzer.StatFilterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LogAnalyzer"
+        mc:Ignorable="d"
+        Title="Filter" Height="450" Width="800">
+    <Grid>
+        <TabControl Margin="10,10,10,35" SelectedIndex="1">
+            <TabItem Header="Time">
+                <Grid>
+                    <Label Content="Start:" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxDateStart"  HorizontalAlignment="Left" Margin="52,10,0,0" TextWrapping="NoWrap" Text="Start Date" FontFamily="Consolas" VerticalAlignment="Top" Width="120" TextChanged="TextBoxDateStart_OnTextChanged" GotFocus="TextBoxTime_OnGotFocus"/>
+                    <TextBox x:Name="textBoxTimeStart" HorizontalAlignment="Left" Margin="177,10,0,0" TextWrapping="NoWrap" Text="Start Time" FontFamily="Consolas" VerticalAlignment="Top" Width="120" TextChanged="TextBoxTimeStart_OnTextChanged" GotFocus="TextBoxTime_OnGotFocus"/>
+                    <Button Content="Set Min" HorizontalAlignment="Left" Margin="302,9,0,0" VerticalAlignment="Top" Width="64" Click="ButtonSetMinTime_OnClick" />
+
+                    <Label Content="End:" HorizontalAlignment="Left" Margin="14,29,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxDateEnd" HorizontalAlignment="Left" Margin="52,33,0,0" TextWrapping="NoWrap" Text="End Date" FontFamily="Consolas" VerticalAlignment="Top" Width="120" TextChanged="TextBoxDateEnd_OnTextChanged" GotFocus="TextBoxTime_OnGotFocus"/>
+                    <TextBox x:Name="textBoxTimeEnd" HorizontalAlignment="Left" Margin="177,33,0,0" TextWrapping="NoWrap" Text="End Time" FontFamily="Consolas" VerticalAlignment="Top" Width="120" TextChanged="TextBoxTimeEnd_OnTextChanged" GotFocus="TextBoxTime_OnGotFocus"/>
+                    <Button Content="Set Max" HorizontalAlignment="Left" Margin="302,32,0,0" VerticalAlignment="Top" Width="64" Click="ButtonSetMaxTime_OnClick" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Players">
+                <Grid>
+                    <Button Content="All" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="60" Click="ButtonAllPlayers_OnClick"/>
+                    <Button Content="None" HorizontalAlignment="Left" Margin="75,10,0,0" VerticalAlignment="Top" Width="60" Click="ButtonNonePlayers_OnClick"/>
+                    <ListBox x:Name="listBoxPlayers" Margin="10,35,10,10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Content="{Binding Path=Name}" IsChecked="{Binding Path=Enabled}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Chats">
+                <Grid>
+                    <Button Content="All" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="60" Click="ButtonAllChats_OnClick"/>
+                    <Button Content="None" HorizontalAlignment="Left" Margin="75,10,0,0" VerticalAlignment="Top" Width="60" Click="ButtonNoChats_OnClick"/>
+                    <ListBox x:Name="listBoxChats" Margin="10,35,10,10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Content="{Binding Path=Name}" IsChecked="{Binding Path=Enabled}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Content="OK" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="ButtonOK_OnClick"/>
+    </Grid>
+</Window>

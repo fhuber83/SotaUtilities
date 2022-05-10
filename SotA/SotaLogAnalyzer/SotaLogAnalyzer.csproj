@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <StartupObject>SotaLogAnalyzer.App</StartupObject>
+    <ApplicationIcon>SotA.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="SotA.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SotaParserLib\SotaParserLib.csproj" />
+  </ItemGroup>
+
+</Project>

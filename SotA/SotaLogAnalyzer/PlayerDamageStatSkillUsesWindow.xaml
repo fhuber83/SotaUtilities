@@ -1,0 +1,58 @@
+﻿<Window x:Class="LogAnalyzer.PlayerDamageStatSkillUsesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LogAnalyzer"
+        mc:Ignorable="d"
+        Title="PlayerDamageStatSkillUsesWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="ItemStyle" TargetType="ListViewItem">
+            <EventSetter Event="MouseDoubleClick" Handler="EventSetter_OnHandler"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <ListView x:Name="listViewStats" Margin="10" ItemContainerStyle="{StaticResource ItemStyle}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding TimestampString}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Time" Tag="Timestamp" Click="ListViewCombat_OnHeaderClicked"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding WhoSource}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Attacker" Tag="WhoSource" Click="ListViewCombat_OnHeaderClicked"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding WhoTarget}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Target" Tag="WhoTarget" Click="ListViewCombat_OnHeaderClicked"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Result.AttackResult}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Result" Tag="Result.AttackResult" Click="ListViewCombat_OnHeaderClicked"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Result.Damage}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Damage" Tag="Result.Damage" Click="ListViewCombat_OnHeaderClicked"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Result.Skill}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Skill" Tag="Result.Skill" Click="ListViewCombat_OnHeaderClicked"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Result.Modifier}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Modifier" Tag="Result.Modifier" Click="ListViewCombat_OnHeaderClicked"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>

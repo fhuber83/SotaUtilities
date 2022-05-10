@@ -1,0 +1,20 @@
+﻿<Window x:Class="LogAnalyzer.LootRollWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LogAnalyzer"
+        mc:Ignorable="d"
+        Title="LootRollWindow" Height="286.779" Width="552.43">
+    <Grid>
+        <Label Content="Item" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+        <TextBox Height="23" Margin="56,10,145,0" IsReadOnly="True" TextWrapping="NoWrap" Text="{Binding Path=ItemName,Mode=OneTime}" VerticalAlignment="Top"/>
+
+        <Label Content="Value" HorizontalAlignment="Right" Margin="0,6,101,0" VerticalAlignment="Top"/>
+        <TextBox Height="23" Margin="0,10,10,0" IsReadOnly="True" TextWrapping="NoWrap" Text="{Binding Path=ItemValue,Mode=OneTime}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="91"/>
+
+        <TextBox Margin="10,66,10,10" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding Path=Line,Mode=OneTime}" FontFamily="Consolas" FontSize="13"/>
+        <Label Content="Person" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top"/>
+        <TextBox Height="23" IsReadOnly="True" Margin="56,38,10,0" TextWrapping="NoWrap" Text="{Binding Path=LooterName,Mode=OneTime}" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

@@ -1,0 +1,5 @@
+<project outputDir="C:\Users\f.huber\source\repos\LogAnalyzer\LogAnalyzer\bin\Release\Confused" baseDir="C:\Users\f.huber\source\repos\LogAnalyzer\LogAnalyzer\bin\Release" xmlns="http://confuser.codeplex.com">
+  <packer id="compressor" />
+  <module path="LogAnalyzer.exe" />
+  <module path="SotaLogParser.dll" />
+</project>

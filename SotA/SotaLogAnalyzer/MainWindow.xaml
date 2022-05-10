@@ -1,0 +1,193 @@
+﻿<Window x:Class="LogAnalyzer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LogAnalyzer"
+        mc:Ignorable="d"
+        Title="SotA Log Analyzer" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style x:Key="ItemStyle" TargetType="{x:Type ListViewItem}">
+            <EventSetter Event="MouseDoubleClick" Handler="EventSetter_OnHandler" />
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Stats">
+                <MenuItem Header="Save as..." Click="MenuItemSaveAs_OnClick"/>
+                <Separator/>
+                <MenuItem Header="Filter..." Click="MenuItemStatFilter_OnClick"/>
+                <Separator/>
+                <MenuItem Header="Damage Dealt..." Click="MenuItemDamageStats_OnClick"/>
+                <MenuItem Header="Damage Received..." Click="MenuItemDamageReceivedStats_OnClick"/>
+                <MenuItem Header="Heals..." Click="MenuItemHealStats_OnClick"/>
+                <MenuItem Header="Level Ups..." Click="MenuItemLevelUpStats_OnClick"/>
+                <Separator/>
+                <MenuItem Header="Exit" Click="MenuItemExit_OnClick"/>
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem x:Name="statusBarItem1" Height="20"/>
+        </StatusBar>
+        <Grid>
+            <TabControl Margin="10" AllowDrop="True" PreviewDragOver="ListView1_OnPreviewDragOver" Drop="ListView1_OnDrop">
+                <TabItem Header="Combat">
+                    <ListView x:Name="listViewCombat" Margin="10" ItemContainerStyle="{StaticResource ItemStyle}" KeyDown="ListViewCombat_OnKeyDown">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="200" DisplayMemberBinding="{Binding TimestampString}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Time" Tag="Timestamp" Click="ListViewCombat_OnHeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="200" DisplayMemberBinding="{Binding WhoSource}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Attacker" Tag="WhoSource" Click="ListViewCombat_OnHeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="200" DisplayMemberBinding="{Binding WhoTarget}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Target" Tag="WhoTarget" Click="ListViewCombat_OnHeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding Result.AttackResult}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Result" Tag="Result.AttackResult" Click="ListViewCombat_OnHeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding Result.Damage}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Damage" Tag="Result.Damage" Click="ListViewCombat_OnHeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding Result.Skill}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Skill" Tag="Result.Skill" Click="ListViewCombat_OnHeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding Result.Modifier}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Modifier" Tag="Result.Modifier" Click="ListViewCombat_OnHeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView> 
+                </TabItem>
+
+                <TabItem Header="Heals">
+                    <ListView x:Name="listViewHeals" Margin="10" ItemContainerStyle="{StaticResource ItemStyle}" KeyDown="ListViewHeals_OnKeyDown">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding TimestampString}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Time" Tag="Timestamp" Click="ListViewHeals_OnHeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="200" DisplayMemberBinding="{Binding HealerName}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Healer" Tag="HealerName" Click="ListViewHeals_OnHeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="200" DisplayMemberBinding="{Binding PatientName}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Patient" Tag="TimePatientNamestamp" Click="ListViewHeals_OnHeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding HealAmount}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Amount" Tag="HealAmount" Click="ListViewHeals_OnHeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding Critical}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Crit?" Tag="Critical" Click="ListViewHeals_OnHeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </TabItem>
+
+                <TabItem Header="Chat">
+                    <ListView x:Name="listViewChat" Margin="10" ItemContainerStyle="{StaticResource ItemStyle}" KeyDown="ListViewChat_OnKeyDown">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding TimestampString}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Time" Tag="Timestamp" Click="ListViewChar_HeaderOnClick"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="200" DisplayMemberBinding="{Binding Name}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Name" Tag="Name" Click="ListViewChar_HeaderOnClick"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding ChatName}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Chat" Tag="ChatName" Click="ListViewChar_HeaderOnClick"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="500" DisplayMemberBinding="{Binding Message}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Chat" Tag="Message" Click="ListViewChar_HeaderOnClick"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </TabItem>
+
+                <TabItem Header="Loot">
+                    <ListView x:Name="listViewLoot" Margin="10" ItemContainerStyle="{StaticResource ItemStyle}" KeyDown="ListViewLoot_OnKeyDown">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding LooterName}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Person" Tag="LooterName" Click="ListViewLoot_HeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding ItemName}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Item" Tag="ItemName" Click="ListViewLoot_HeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding ItemValue}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Value" Tag="ItemValue" Click="ListViewLoot_HeaderClicked"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </TabItem>
+
+                <TabItem Header="Other">
+                    <ListView x:Name="listViewOther" Margin="10" ItemContainerStyle="{StaticResource ItemStyle}" KeyDown="ListViewOther_OnKeyDown">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="150" DisplayMemberBinding="{Binding TimestampString}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Time" Tag="Timestamp" Click="ButtonBase_OnClick"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="600" DisplayMemberBinding="{Binding RestOfLine}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Line" Tag="RestOfLine" Click="ButtonBase_OnClick"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </TabItem>
+            </TabControl>
+            <TextBlock x:Name="TextBlockLogPath" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0">
+                <TextBlock.Inlines>
+                    <Hyperlink x:Name="HyperlinkLogPath" NavigateUri="https://google.com" RequestNavigate="HyperlinkLogPath_OnRequestNavigate">SotA Logs</Hyperlink>
+                </TextBlock.Inlines>
+            </TextBlock>
+        </Grid>
+    </DockPanel>
+</Window>

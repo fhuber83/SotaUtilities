@@ -1,0 +1,28 @@
+﻿<Window x:Class="LogAnalyzer.CombatItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LogAnalyzer"
+        mc:Ignorable="d"
+        Title="Combat Item" Height="350.833" Width="437.778">
+    <Grid>
+        <Label Content="Attacker:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxAttacker" Height="23" Margin="72,14,10,0" IsReadOnly="True" TextWrapping="NoWrap" Text="{Binding Path=WhoSource,Mode=OneTime}" VerticalAlignment="Top"/>
+
+        <Label x:Name="textBoxTarget" Content="Target:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
+        <TextBox Height="23" Margin="72,42,10,0" IsReadOnly="True" TextWrapping="NoWrap" Text="{Binding Path=WhoTarget,Mode=OneTime}" VerticalAlignment="Top"/>
+
+        <Label Content="Damage:" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
+        <TextBox Height="23" Margin="72,70,10,0" IsReadOnly="True" TextWrapping="NoWrap" Text="{Binding Path=Result.Damage,Mode=OneTime}" VerticalAlignment="Top"/>
+
+        <Label Content="Skill:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top"/>
+        <TextBox Height="23" Margin="72,98,10,0" IsReadOnly="True" TextWrapping="NoWrap" Text="{Binding Path=Result.Skill,Mode=OneTime}" VerticalAlignment="Top"/>
+
+        <Label Content="Modifier:" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top"/>
+        <TextBox Height="23" Margin="72,126,10,0" IsReadOnly="True" TextWrapping="NoWrap" Text="{Binding Path=Result.Modifier,Mode=OneTime}" VerticalAlignment="Top"/>
+        <TextBox Margin="10,154,10,35" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding Path=Line,Mode=OneTime}" VerticalScrollBarVisibility="Auto" FontFamily="Consolas" FontSize="13"/>
+
+        <Button Content="Open in editor" HorizontalAlignment="Center" Width="100" Margin="0,0,0,10" VerticalAlignment="Bottom" Click="ButtonOpenInEditor_Clicked"/>
+    </Grid>
+</Window>

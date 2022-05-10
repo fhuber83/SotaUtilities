@@ -1,0 +1,78 @@
+﻿<Window x:Class="LogAnalyzer.ExportOptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LogAnalyzer"
+        mc:Ignorable="d"
+        Title="ExportOptionsWindow" MinHeight="240" MinWidth="240" Width="526" Height="433.333">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="groupBoxChat" Grid.Column="0" Margin="5,5,8,5">
+            <GroupBox.Header>
+                <CheckBox IsChecked="True" Checked="CheckBoxChatEnable_OnCheckChanged" Unchecked="CheckBoxChatEnable_OnCheckChanged">Chat</CheckBox>
+            </GroupBox.Header>
+            <GroupBox.Content>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,5,0,0">
+                    <StackPanel Orientation="Vertical" Margin="10">
+                    </StackPanel>
+                </ScrollViewer>
+            </GroupBox.Content>
+        </GroupBox>
+
+        <GridSplitter Width="3" Grid.Column="1" HorizontalAlignment="Stretch"/>
+
+        <GroupBox x:Name="groupBoxLoot" Grid.Column="2" Margin="5,5,7,5">
+            <GroupBox.Header>
+                <CheckBox IsChecked="True" Checked="CheckBoxChatEnable_OnCheckChanged" Unchecked="CheckBoxChatEnable_OnCheckChanged">Loot</CheckBox>
+            </GroupBox.Header>
+            <GroupBox.Content>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,5,0,0">
+                    <StackPanel Orientation="Vertical" Margin="10"/>
+                </ScrollViewer>
+            </GroupBox.Content>
+        </GroupBox>
+
+        <GridSplitter Width="3" Grid.Column="3" HorizontalAlignment="Stretch"/>
+
+        <GroupBox x:Name="groupBoxCombat" Grid.Column="4" Margin="5,5,7,5">
+            <GroupBox.Header>
+                <CheckBox IsChecked="True" Checked="CheckBoxChatEnable_OnCheckChanged" Unchecked="CheckBoxChatEnable_OnCheckChanged">Damage by</CheckBox>
+            </GroupBox.Header>
+            <GroupBox.Content>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,5,0,0">
+                    <StackPanel Orientation="Vertical" Margin="10"/>
+                </ScrollViewer>
+            </GroupBox.Content>
+        </GroupBox>
+
+        <GridSplitter Width="3" Grid.Column="5" HorizontalAlignment="Stretch"/>
+
+        <GroupBox x:Name="groupBoxHeal" Grid.Column="6" Margin="5,5,7,5">
+            <GroupBox.Header>
+                <CheckBox IsChecked="True" Checked="CheckBoxChatEnable_OnCheckChanged" Unchecked="CheckBoxChatEnable_OnCheckChanged">Heals by</CheckBox>
+            </GroupBox.Header>
+            <GroupBox.Content>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,5,0,0">
+                    <StackPanel Orientation="Vertical" Margin="10"/>
+                </ScrollViewer>
+            </GroupBox.Content>
+        </GroupBox>
+
+        <CheckBox x:Name="checkBoxMisc" Content="Misc" Margin="10,0,0,10" Grid.Row="1" IsChecked="True" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="71"/>
+        
+        <Button Content="OK" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="ButtonOK_OnClick"/>
+    </Grid>
+</Window>
