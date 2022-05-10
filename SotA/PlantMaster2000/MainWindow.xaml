@@ -1,0 +1,68 @@
+﻿<Window x:Class="PlantMaster2000.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PlantMaster2000"
+        mc:Ignorable="d"
+        Title="PlantMaster™️ 2000" Height="332" MinHeight="350" Width="330" MinWidth="300" ResizeMode="CanResizeWithGrip">
+    <Grid>
+        <ComboBox x:Name="PlantType" Margin="10,10,0,0" VerticalAlignment="Top" SelectedIndex="1" SelectionChanged="PlantChanged" HorizontalAlignment="Left" Width="115">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            <ComboBox.Items>
+                <local:PlantInfo Name="Cotton" HoursToGrowInGreenhouse="8"/>
+                <local:PlantInfo Name="Garlic" HoursToGrowInGreenhouse="4"/>
+                <local:PlantInfo Name="Mandrake" HoursToGrowInGreenhouse="8"/>
+                <local:PlantInfo Name="Nightshade" HoursToGrowInGreenhouse="8"/>
+            </ComboBox.Items>
+        </ComboBox>
+
+        <ComboBox x:Name="ComboBoxLocation" IsEditable="True" Margin="130,10,10,0" VerticalAlignment="Top">
+            <ComboBox.Items>
+                <ComboBoxItem>Arlia</ComboBoxItem>
+                <ComboBoxItem>Avallon</ComboBoxItem>
+                <ComboBoxItem>M'hul Island</ComboBoxItem>
+                <ComboBoxItem>Silverdale Market</ComboBoxItem>
+            </ComboBox.Items>
+        </ComboBox>
+
+        <GroupBox Header="Location" VerticalAlignment="Top" Margin="10,39,0,0" Height="92" HorizontalAlignment="Left" Width="115">
+            <Grid>
+                <RadioButton x:Name="LocationGreenhouse" Content="Greenhouse" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Checked="PlantingLocationChanged" Unchecked="PlantingLocationChanged"/>
+                <RadioButton x:Name="LocationOutside" Content="Outside" IsChecked="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0" Checked="PlantingLocationChanged" Unchecked="PlantingLocationChanged"/>
+                <RadioButton x:Name="LocationIndoors" Content="Indoors" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,0,0" Checked="PlantingLocationChanged" Unchecked="PlantingLocationChanged"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox VerticalAlignment="Top" Header="Time" Margin="130,39,10,0" Height="92">
+            <Grid>
+                <TextBox x:Name="TextBoxPlantingTime" Margin="10,10,10,0" TextWrapping="NoWrap" IsReadOnly="True" Text="" VerticalAlignment="Top"/>
+                <Button HorizontalAlignment="Left" Content="Now" Margin="10,0,0,10" Width="40" Click="ButtonNowClicked" Height="20" VerticalAlignment="Bottom"/>
+                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Content="Specific..." Margin="54,39,0,0" Width="70" Click="SetSpecificTimeClicked"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Water" Margin="10,136,10,0" Height="127" VerticalAlignment="Top">
+            <Grid>
+                <Label Content="1st" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,6,0,0"/>
+                <TextBox x:Name="FirstWaterTime" IsReadOnly="True" FontFamily="Consolas" Margin="71,10,10,0" TextWrapping="NoWrap" Text="TextBox" VerticalAlignment="Top"/>
+
+                <Label Content="2nd" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,29,0,0"/>
+                <TextBox x:Name="SecondWaterTime" IsReadOnly="True" FontFamily="Consolas" Margin="71,33,10,0" TextWrapping="NoWrap" Text="TextBox" VerticalAlignment="Top"/>
+
+                <Label Content="3rd" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,52,0,0"/>
+                <TextBox x:Name="ThirdWaterTime" IsReadOnly="True" FontFamily="Consolas" Margin="71,56,10,0" TextWrapping="NoWrap" Text="TextBox" VerticalAlignment="Top"/>
+
+                <Label Content="Deadline" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,75,0,0"/>
+                <TextBox x:Name="LastChanceToWater" IsReadOnly="True" FontFamily="Consolas" Margin="71,79,10,0" TextWrapping="NoWrap" Text="TextBox" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+
+        <CheckBox Content="Topmost" ToolTip="Window always on top" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Checked="TopmostWindowCheckboxChanged" Unchecked="TopmostWindowCheckboxChanged"/>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10" Content="To Clipboard" Width="84" Click="OnCopyToClipboard"/>
+    </Grid>
+</Window>
