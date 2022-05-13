@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="LootRollWindow" Height="286.779" Width="552.43">
     <Grid>
-        <Label Content="Item" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+        <Label Content="ItemBase" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
         <TextBox Height="23" Margin="56,10,145,0" IsReadOnly="True" TextWrapping="NoWrap" Text="{Binding Path=ItemName,Mode=OneTime}" VerticalAlignment="Top"/>
 
         <Label Content="Value" HorizontalAlignment="Right" Margin="0,6,101,0" VerticalAlignment="Top"/>

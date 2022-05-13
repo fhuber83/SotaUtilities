@@ -151,7 +151,7 @@
                                 </GridViewColumn>
                                 <GridViewColumn Width="100" DisplayMemberBinding="{Binding ItemName}">
                                     <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="Item" Tag="ItemName" Click="ListViewLoot_HeaderClicked"/>
+                                        <GridViewColumnHeader Content="ItemBase" Tag="ItemName" Click="ListViewLoot_HeaderClicked"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
                                 <GridViewColumn Width="100" DisplayMemberBinding="{Binding ItemValue}">

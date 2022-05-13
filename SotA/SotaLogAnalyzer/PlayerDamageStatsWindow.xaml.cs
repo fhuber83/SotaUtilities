@@ -31,11 +31,11 @@ namespace LogAnalyzer
                 SkillName = name;
             }
 
-            public void AddSkillUse(CombatLogItem item)
+            public void AddSkillUse(CombatLogItem itemBase)
             {
                 NumberOfUses += 1;
-                DamageTotal += item.Result.Damage;
-                LogItems.Add(item);
+                DamageTotal += itemBase.Result.Damage;
+                LogItems.Add(itemBase);
             }
 
             public string SkillName { get; }

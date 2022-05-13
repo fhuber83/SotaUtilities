@@ -22,19 +22,19 @@ namespace LogAnalyzer
     /// </summary>
     public partial class CombatItemWindow : Window
     {
-        public CombatLogItem Item { get; }
+        public CombatLogItem ItemBase { get; }
 
-        public CombatItemWindow(SotaLogParser.CombatLogItem item)
+        public CombatItemWindow(SotaLogParser.CombatLogItem itemBase)
         {
-            Item = item;
-            DataContext = item;
+            ItemBase = itemBase;
+            DataContext = itemBase;
 
             InitializeComponent();
         }
 
         private void ButtonOpenInEditor_Clicked(object sender, RoutedEventArgs e)
         {
-            NotepadPlusPlusHelper.OpenEditor(Item.FileName, Item.LineNumber);
+            NotepadPlusPlusHelper.OpenEditor(ItemBase.FileName, ItemBase.LineNumber);
         }
     }
 }

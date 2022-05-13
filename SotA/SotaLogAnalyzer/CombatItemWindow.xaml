@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LogAnalyzer"
         mc:Ignorable="d"
-        Title="Combat Item" Height="350.833" Width="437.778">
+        Title="Combat ItemBase" Height="350.833" Width="437.778">
     <Grid>
         <Label Content="Attacker:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxAttacker" Height="23" Margin="72,14,10,0" IsReadOnly="True" TextWrapping="NoWrap" Text="{Binding Path=WhoSource,Mode=OneTime}" VerticalAlignment="Top"/>

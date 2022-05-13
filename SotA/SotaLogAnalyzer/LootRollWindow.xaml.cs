@@ -19,9 +19,9 @@ namespace LogAnalyzer
     /// </summary>
     public partial class LootRollWindow : Window
     {
-        public LootRollWindow(SotaLogParser.LootRollItem item)
+        public LootRollWindow(SotaLogParser.LootRollItem itemBase)
         {
-            DataContext = item;
+            DataContext = itemBase;
 
             InitializeComponent();
         }

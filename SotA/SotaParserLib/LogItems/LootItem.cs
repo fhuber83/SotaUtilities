@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SotaLogParser
 {
-    public class LootItem : LogItem
+    public class LootItem : LogItemBase
     {
         public LootItem(DateTime time, string path, int lineNumber, string line, string restOfLine, string itemName, string looterName, int itemValue = 0) : base(time, path, lineNumber, line, restOfLine)
         {

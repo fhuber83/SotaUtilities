@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SotaLogParser
 {
-    public class HealItem : LogItem
+    public class HealItem : LogItemBase
     {
         public HealItem(DateTime timestamp, string path, int lineNumber, string line, string restOfLine, string nameHealer, string namePatient, int amount, bool crit) : base(timestamp, path, lineNumber, line, restOfLine)
         {

@@ -25,9 +25,9 @@ namespace LogAnalyzer
     /// </summary>
     public partial class FindWindow : Window
     {
-        private List<SotaLogParser.LogItem> Items;
+        private List<SotaLogParser.LogItemBase> Items;
 
-        public FindWindow(List<SotaLogParser.LogItem> items)
+        public FindWindow(List<SotaLogParser.LogItemBase> items)
         {
             Items = items;
 
@@ -158,7 +158,7 @@ namespace LogAnalyzer
         {
             if (sender is ListViewItem lvi)
             {
-                if (lvi.Content is LogItem item)
+                if (lvi.Content is LogItemBase item)
                 {
                     var dlg = new MiscItemWindow(item)
                     {
@@ -171,27 +171,27 @@ namespace LogAnalyzer
             }
         }
 
-        private void ShowInEditor(LogItem item)
+        private void ShowInEditor(LogItemBase itemBase)
         {
-            //(Application.Current as App)?.LaunchEditor(item.FileName, item.LineNumber);
+            //(Application.Current as App)?.LaunchEditor(itemBase.FileName, itemBase.LineNumber);
         }
 
-        public LogItem GoToItem { get; private set; } = null;
+        public LogItemBase GoToItemBase { get; private set; } = null;
 
         private void ListViewResults_OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.E && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                if (listViewResults.SelectedItems.Count == 1 && listViewResults.SelectedItems[0] is LogItem logItem)
+                if (listViewResults.SelectedItems.Count == 1 && listViewResults.SelectedItems[0] is LogItemBase logItem)
                 {
                     ShowInEditor(logItem);
                 }
             }
             else if(e.Key  == Key.G && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                if (listViewResults.SelectedItems.Count == 1 && listViewResults.SelectedItems[0] is LogItem logItem)
+                if (listViewResults.SelectedItems.Count == 1 && listViewResults.SelectedItems[0] is LogItemBase logItem)
                 {
-                    GoToItem = logItem;
+                    GoToItemBase = logItem;
                     DialogResult = true;
                     Close();
                 }

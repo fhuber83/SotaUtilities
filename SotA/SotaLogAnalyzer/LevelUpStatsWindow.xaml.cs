@@ -53,7 +53,7 @@ namespace LogAnalyzer
             {
                 if (listViewStats.SelectedItems.Count == 1 && listViewStats.SelectedItems[0] is LevelUpItem item)
                 {
-                    //(Application.Current as App)?.LaunchEditor(item.FileName, item.LineNumber);
+                    //(Application.Current as App)?.LaunchEditor(itemBase.FileName, itemBase.LineNumber);
                 }
             }
         }

@@ -34,31 +34,27 @@ namespace SotaLogParser
             regexTimestamp = new Regex(@"^\[(?<month>\d+)\/(?<day>\d+)\/(?<year>\d+)\s(?<hour>\d+):(?<minute>\d+):(?<second>\d+)\s(?<AmPm>[AP]M)\]\s(?<rest>.*)$", RegexOptions.Compiled);
             regexTimestamp2 = new Regex(@"^\[\d{2}:\d{2}\]\s+(?<rest>.*)$", RegexOptions.Compiled);
 
-            regexHit = new Regex(@"^(?<attacker>[A-Za-z\(\)0-9'\<\> ]+)(\[PVP\])?\sattacks\s(?<target>[A-Za-z'\(\)0-9\<\> ]+) and (?<result>.*)$", RegexOptions.Compiled);
-            regexHeal = new Regex(@"^(?<patient>[A-Za-z\(\)0-9'\<\> ]+)(\[PVP\])?\sis\shealed\sfor\s(?<amount>[0-9,]+)\spoints?\sof\shealth(?<crit>\s\(critical\)\s|\s)by\s(?<healer>[A-Za-z\(\)0-9'\<\> ]+)(\[PVP\])?.$", RegexOptions.Compiled);
-            regexHealWithoutHealer = new Regex(@"^(?<patient>[A-Za-z\(\)0-9'\<\> ]+)(\[PVP\])?\sis\shealed\sfor\s(?<amount>[0-9,]+)\spoints?\sof\shealth(?<crit>\s\(critical\)\.|\.)$", RegexOptions.Compiled);
-            regexChat = new Regex(@"^(?<name>[A-Za-z<>' ]+)(\[PVP\])?\s\(To\s(?<chat>[A-Za-z ]+)(\[PVP\])?\):\s(?<msg>.+)$", RegexOptions.Compiled);
-            regexLoot = new Regex(@"^(?<name>[A-Za-z<>' ]+)\slooted\san\sitem\s\((?<item>.+)\)\.$", RegexOptions.Compiled);
-            regexRoll = new Regex(@"^(?<name>[A-Za-z<>' ]+)\srolled\s(?<roll>\d+)$", RegexOptions.Compiled);
-            regexRollWin = new Regex(@"^(?<name>[A-Za-z<>' ]+)\sWON\swith\s(?<roll>\d+)$", RegexOptions.Compiled);
-            regexRollStart = new Regex(@"^Roll\sresults\sfor\s(?<item>[A-Za-z\-\(\)\+,:' ]+)\s+\(\s+Value:\s+(?<value>\d+)\)$", RegexOptions.Compiled);
-            regexHarvest = new Regex(@"^(?<name>[A-Za-z<>' ]+)\sharvested\san\sitem\s\((?<item>.+)\)\.", RegexOptions.Compiled);
-            regexHarvest2 = new Regex(@"^Item\s\((?<item>.*)\)\sadded\sto\sinventory\.$", RegexOptions.Compiled);
-            regexLevelUp = new Regex(@"^(?<name>[A-Za-z<>' ]+)'s\sskill\s\((?<skill>[A-Za-z' -]+)\)\shas\sincreased\sto\slevel\s(?<level>\d+)!$", RegexOptions.Compiled);
-            regexRhapsodyOfRecovery = new Regex(@"^(?<player>[A-Za-z0-9<>'\<\> ]+)(\[PVP\])?\sadds\s(?<amount>\d+)\spoints of focus by (?<source>[A-Za-z<>'\<\> ]+(\[PVP\])?'s )?Rhapsody of Recovery.$", RegexOptions.Compiled);
-            regexDamageAbsorb = new Regex(@"^([A-Za-z<>' ]+)\ absorbs (\d+) points of damage through ([-0-9]+) focus.$", RegexOptions.Compiled);
-            regexAdvLevelUp = new Regex(@"^(?<name>[A-Za-z<>' ]+)'s Adventurer level has increased to (?<level>\d+)!$", RegexOptions.Compiled);
-            regexProdLevelUp = new Regex(@"^(?<name>[A-Za-z<>' ]+)'s Producer level has increased to (?<level>\d+)!$", RegexOptions.Compiled);
+            regexHit = new Regex(@"^(?<attacker>[\w\(\)\d',<> ]+)(\[PVP\])?\sattacks\s(?<target>[\w'\(\)\d,<> ]+) and (?<result>.*)$", RegexOptions.Compiled);
+            regexHeal = new Regex(@"^(?<patient>[\w\(\)\d'<> ]+)(\[PVP\])?\sis\shealed\sfor\s(?<amount>[\d,]+)\spoints?\sof\shealth(?<crit>\s\(critical\)\s|\s)by\s(?<healer>[\w\(\)\d'\<\> ]+)(\[PVP\])?.$", RegexOptions.Compiled);
+            regexHealWithoutHealer = new Regex(@"^(?<patient>[\w\(\)\d'<> ]+)(\[PVP\])?\sis\shealed\sfor\s(?<amount>[\d,]+)\spoints?\sof\shealth(?<crit>\s\(critical\)\.|\.)$", RegexOptions.Compiled);
+            regexChat = new Regex(@"^(?<name>[\w<>' ]+)(\[PVP\])?\s\(To\s(?<chat>[\w ]+)(\[PVP\])?\):\s(?<msg>.+)$", RegexOptions.Compiled);
+            regexLoot = new Regex(@"^(?<name>[\w<>' ]+)\slooted\san\sitem\s\((?<itemBase>.+)\)\.$", RegexOptions.Compiled);
+            regexRoll = new Regex(@"^(?<name>[\w<>' ]+)\srolled\s(?<roll>\d+)$", RegexOptions.Compiled);
+            regexRollWin = new Regex(@"^(?<name>[\w<>' ]+)\sWON\swith\s(?<roll>\d+)$", RegexOptions.Compiled);
+            regexRollStart = new Regex(@"^Roll\sresults\sfor\s(?<itemBase>[\w\-\(\)\+,:' ]+)\s+\(\s+Value:\s+(?<value>\d+)\)$", RegexOptions.Compiled);
+            regexHarvest = new Regex(@"^(?<name>[\w<>' ]+)\sharvested\san\sitem\s\((?<itemBase>.+)\)\.", RegexOptions.Compiled);
+            regexHarvest2 = new Regex(@"^ItemBase\s\((?<itemBase>.*)\)\sadded\sto\sinventory\.$", RegexOptions.Compiled);
+            regexLevelUp = new Regex(@"^(?<name>[\w<>' ]+)'s\sskill\s\((?<skill>[\w' -]+)\)\shas\sincreased\sto\slevel\s(?<level>\d+)!$", RegexOptions.Compiled);
+            regexRhapsodyOfRecovery = new Regex(@"^(?<player>[\w\d<>' ]+)(\[PVP\])?\sadds\s(?<amount>\d+)\spoints of focus by ((?<source>[\w<>' ]+(\[PVP\])?)'s )?Rhapsody of Recovery.$", RegexOptions.Compiled);
+            regexDamageAbsorb = new Regex(@"^([\w<>' ]+)\ absorbs (\d+) points of damage through ([-\d]+) focus.$", RegexOptions.Compiled);
+            regexAdvLevelUp = new Regex(@"^(?<name>[\w<>' ]+)'s Adventurer level has increased to (?<level>\d+)!$", RegexOptions.Compiled);
+            regexProdLevelUp = new Regex(@"^(?<name>[\w<>' ]+)'s Producer level has increased to (?<level>\d+)!$", RegexOptions.Compiled);
             
             // TODO this Regex probably needs some work!
-            regexDamageTaken = new Regex(@"^(?<who>[A-Za-z\(\)0-9'\<\> ]+)(\[PVP\])?\stakes\s(?<amount>\d+)\spoints\sof\sdamage(\sfrom\s(?<skill>.*))?.$", RegexOptions.Compiled);
+            regexDamageTaken = new Regex(@"^(?<who>[\w\(\)\d'<> ]+)(\[PVP\])?\stakes\s(?<amount>\d+)\spoints\sof\sdamage(\sfrom\s(?<skill>.*))?.$", RegexOptions.Compiled);
         }
 
-        public SotaLog()
-        {
-        }
-
-        public SotaLog(string path)
+        public SotaLog(string path = null)
         {
             Path = path;
         }
@@ -72,9 +68,9 @@ namespace SotaLogParser
         /// </summary>
         /// <param name="line"></param>
         /// <returns></returns>
-        public LogItem ParseLine(string line)
+        public LogItemBase ParseLine(string line)
         {
-            LogItem parsedItem = null;
+            LogItemBase parsedItem = null;
 
             var matchTime = regexTimestamp.Match(line);
 
@@ -190,7 +186,7 @@ namespace SotaLogParser
                                 if (matchLoot.Success)
                                 {
                                     var looterName = matchLoot.Groups["name"].Value;
-                                    var itemName = matchLoot.Groups["item"].Value;
+                                    var itemName = matchLoot.Groups["itemBase"].Value;
 
                                     var item = new LootItem(timestamp, Path, LineNumber, line, restOfLine,
                                         itemName, looterName);
@@ -218,7 +214,7 @@ namespace SotaLogParser
                                         {
                                             RollSTM.Reset();
 
-                                            var item = new LogItem(timestamp, Path, LineNumber, line,
+                                            var item = new LogItemBase(timestamp, Path, LineNumber, line,
                                                 restOfLine);
 
                                             Items.Add(item);
@@ -245,7 +241,7 @@ namespace SotaLogParser
                                             {
                                                 RollSTM.Reset();
 
-                                                var item = new LogItem(timestamp, Path, LineNumber, line,
+                                                var item = new LogItemBase(timestamp, Path, LineNumber, line,
                                                     restOfLine);
 
                                                 Items.Add(item);
@@ -258,12 +254,12 @@ namespace SotaLogParser
                                         {
                                             var matchRollStart = regexRollStart.Match(restOfLine);
 
-                                            // Rolling for an item begins
+                                            // Rolling for an itemBase begins
                                             if (matchRollStart.Success)
                                             {
                                                 try
                                                 {
-                                                    var itemName = matchRollStart.Groups["item"].Value;
+                                                    var itemName = matchRollStart.Groups["itemBase"].Value;
                                                     var itemValue =
                                                         int.Parse(matchRollStart.Groups["value"].Value);
 
@@ -284,7 +280,7 @@ namespace SotaLogParser
                                                 {
                                                     RollSTM.Reset();
 
-                                                    var item = new LogItem(timestamp, Path, LineNumber, line,
+                                                    var item = new LogItemBase(timestamp, Path, LineNumber, line,
                                                         restOfLine);
 
                                                     Items.Add(item);
@@ -300,7 +296,7 @@ namespace SotaLogParser
                                                 if (matchHarvest.Success)
                                                 {
                                                     var harvesterName = matchHarvest.Groups["name"].Value;
-                                                    var itemName = matchHarvest.Groups["item"].Value;
+                                                    var itemName = matchHarvest.Groups["itemBase"].Value;
 
                                                     var item = new LootItem(timestamp, Path, LineNumber, line,
                                                         restOfLine, itemName, harvesterName);
@@ -316,7 +312,7 @@ namespace SotaLogParser
 
                                                     if (matchHarvest2.Success)
                                                     {
-                                                        var itemName = matchHarvest2.Groups["item"].Value;
+                                                        var itemName = matchHarvest2.Groups["itemBase"].Value;
 
                                                         var item = new LootItem(timestamp, Path, LineNumber,
                                                             line, restOfLine, itemName, null);
@@ -362,7 +358,7 @@ namespace SotaLogParser
                                                                         matchRhapsodyOfRecovery
                                                                             .Groups["amount"].Value);
 
-                                                                    string caster = null;
+                                                                    string caster = "(Null)";
 
                                                                     if (matchRhapsodyOfRecovery.Groups["source"].Success)
                                                                     {
@@ -384,7 +380,7 @@ namespace SotaLogParser
                                                                 }
                                                                 catch
                                                                 {
-                                                                    var item = new LogItem(timestamp, Path,
+                                                                    var item = new LogItemBase(timestamp, Path,
                                                                         LineNumber,
                                                                         line, restOfLine);
 
@@ -422,7 +418,7 @@ namespace SotaLogParser
                                                                     }
                                                                     catch
                                                                     {
-                                                                        var item = new LogItem(timestamp, Path,
+                                                                        var item = new LogItemBase(timestamp, Path,
                                                                             LineNumber, line, restOfLine);
 
                                                                         Items.Add(item);
@@ -519,7 +515,7 @@ namespace SotaLogParser
 
                                                                             else
                                                                             {
-                                                                                var item = new LogItem(
+                                                                                var item = new LogItemBase(
                                                                                     timestamp,
                                                                                     Path,
                                                                                     LineNumber,
@@ -572,7 +568,13 @@ namespace SotaLogParser
                         break;
                     }
 
-                    ParseLine(line);
+                    var item = ParseLine(line);
+
+                    if (!(item is null))
+                    {
+                        item.FileName = path;
+                        item.LineNumber = lineNumber;
+                    }
 
                     // Report progress
                     if(!(progress is null))
@@ -594,11 +596,11 @@ namespace SotaLogParser
         }
 
         public List<string> ErrorLines { get; } = new List<string>();
-        public List<LogItem> Items { get; } = new List<LogItem>();
+        public List<LogItemBase> Items { get; } = new List<LogItemBase>();
         public List<CombatLogItem> CombatItems { get; } = new List<CombatLogItem>();
         public List<HealItem> HealItems { get; } = new List<HealItem>();
         public List<ChatItem> ChatItems { get; } = new List<ChatItem>();
-        public List<LogItem> MiscItems { get; } = new List<LogItem>();
+        public List<LogItemBase> MiscItems { get; } = new List<LogItemBase>();
         public List<LootItem> LootItems { get; } = new List<LootItem>();
         public List<LevelUpItem> LevelUpItems { get; } = new List<LevelUpItem>();
         public List<RhapsodyOfRecoveryItem> RhapsodyOfRecoveryItems { get; } = new List<RhapsodyOfRecoveryItem>();

@@ -11,10 +11,10 @@ namespace LogAnalyzer
             Name = name;
         }
 
-        public void Add(CombatLogItem item)
+        public void Add(CombatLogItem itemBase)
         {
-            DamageTotal += item.Result.Damage;
-            Items.Add(item);
+            DamageTotal += itemBase.Result.Damage;
+            Items.Add(itemBase);
         }
 
         public string Name { get; }

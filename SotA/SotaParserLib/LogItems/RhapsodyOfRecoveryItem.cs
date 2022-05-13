@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SotaLogParser
 {
-    public class RhapsodyOfRecoveryItem : LogItem
+    public class RhapsodyOfRecoveryItem : LogItemBase
     {
         public RhapsodyOfRecoveryItem(DateTime timestamp, string path, int lineNumber, string line, string restOfLine, string playerName, string casterName, int amount) : base(timestamp, path, lineNumber, line, restOfLine)
         {

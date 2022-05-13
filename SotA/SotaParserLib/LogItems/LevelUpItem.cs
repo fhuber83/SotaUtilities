@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SotaLogParser
 {
-    public class LevelUpItem : LogItem
+    public class LevelUpItem : LogItemBase
     {
         public string Name { get; }
         public int Level { get; }

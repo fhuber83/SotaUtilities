@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace SotaLogParser
 {
-    public class CombatLogItem : LogItem
+    public class CombatLogItem : LogItemBase
     {
         public class CombatResult
         {

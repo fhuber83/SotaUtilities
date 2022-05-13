@@ -21,25 +21,25 @@ namespace LogAnalyzer
     /// </summary>
     public partial class MiscItemWindow : Window
     {
-        private LogItem Item { get; }
+        private LogItemBase ItemBase { get; }
 
-        public MiscItemWindow(LogItem item)
+        public MiscItemWindow(LogItemBase itemBase)
         {
-            Item = item;
-            DataContext = item;
+            ItemBase = itemBase;
+            DataContext = itemBase;
             InitializeComponent();
 
-            Title = $"{item.FileName}, line {item.LineNumber}";
+            Title = $"{itemBase.FileName}, line {itemBase.LineNumber}";
 
-            textBoxDate.Text = $"{Item.Timestamp.Day:D2}.{Item.Timestamp.Month:D2}.{Item.Timestamp.Year:D4}";
-            textBoxTime.Text = $"{Item.Timestamp.Hour:D2}:{Item.Timestamp.Minute:D2}:{Item.Timestamp.Second:D2}";
+            textBoxDate.Text = $"{ItemBase.Timestamp.Day:D2}.{ItemBase.Timestamp.Month:D2}.{ItemBase.Timestamp.Year:D4}";
+            textBoxTime.Text = $"{ItemBase.Timestamp.Hour:D2}:{ItemBase.Timestamp.Minute:D2}:{ItemBase.Timestamp.Second:D2}";
         }
 
         private void ButtonOpenInEditor_Clicked(object sender, RoutedEventArgs e)
         {
             if (Registry.GetValue(@"HKEY_LOCAL_MACHINE\Software\Notepad++", null, null) is string notepadPath)
             {
-                System.Diagnostics.Process.Start(notepadPath + @"\notepad++.exe", $"-n{Item.LineNumber} \"{Item.FileName}\"");
+                System.Diagnostics.Process.Start(notepadPath + @"\notepad++.exe", $"-n{ItemBase.LineNumber} \"{ItemBase.FileName}\"");
             }
 
             else

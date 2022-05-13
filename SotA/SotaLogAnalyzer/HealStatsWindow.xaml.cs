@@ -28,10 +28,10 @@ namespace LogAnalyzer
                 HealerName = name;
             }
 
-            public void Add(HealItem item)
+            public void Add(HealItem itemBase)
             {
-                Items.Add(item);
-                TotalAmountHealed += item.HealAmount;
+                Items.Add(itemBase);
+                TotalAmountHealed += itemBase.HealAmount;
             }
 
             public string HealerName { get; }
