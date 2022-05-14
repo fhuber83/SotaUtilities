@@ -58,7 +58,14 @@ namespace SotaParserTests
         [TestCase(@"[5/12/2022 11:51:30 AM] [11:51] Brign, Lord of Water attacks Red Devils <Gamechanger> and hits, dealing 5 points of damage from Ice Field.", "Brign, Lord of Water", "Red Devils <Gamechanger>", 5)]
         [TestCase(@"[5/12/2022 9:08:33 PM] [21:08] Böser Wind <Rielle Peddler> attacks Kobold Mage and hits, dealing 105 points of damage.", "Böser Wind <Rielle Peddler>", "Kobold Mage", 105)]
         [TestCase(@"[5/12/2022 11:25:34 AM] [11:25] Sheamous Spearshaker takes 17 points of damage from Spike Damage.", "(Null)", "Sheamous Spearshaker", 17)]
-        public void CanParseCombatItem(string line, string attacker, string target, int damage)
+        [TestCase(@"[5/8/2022 3:39:02 PM] [15:39] Gael, Lord of Air takes 15 points of damage from Chaotic Feedback.", "(Null)", "Gael, Lord of Air", 15)]
+        [TestCase(@"[5/8/2022 3:39:02 PM] [15:39] Gael, Lord of Air takes 69 points of damage.", "(Null)", "Gael, Lord of Air", 69)]
+        [TestCase(@"[5/12/2022 4:13:38 PM] [16:13] Mordelon <Horavis> takes 168 points of critical damage.", "(Null)", "Mordelon <Horavis>", 168, SotaLogParser.CombatLogItem.CombatResult.AttackModifiers.Critical)]
+        [TestCase(@"[4/30/2022 4:30:17 AM] [04:30] Relic Hunter (T18) attacks Will-O-Wisp <xanthan> and hits, dealing 330 points of damage from Discharge.", "Relic Hunter (T18)", "Will-O-Wisp <xanthan>", 330)]
+        [TestCase(@"[5/13/2022 2:28:39 PM] [14:28] Spawn Sobek <Apple Pie> takes 1,024 points of critical damage.", "(Null)", "Spawn Sobek <Apple Pie>", 1024, SotaLogParser.CombatLogItem.CombatResult.AttackModifiers.Critical)]
+        [TestCase(@"[4/17/2022 12:58:37 AM] [00:58] Greater Daemon takes 21 points of glancing damage due to armor from Daemon Chaos.", "(Null)", "Greater Daemon", 21, SotaLogParser.CombatLogItem.CombatResult.AttackModifiers.Glancing)]
+        [TestCase(@"[4/17/2022 2:06:48 PM] [14:06] Rielle Peddler takes 1 point of damage.", "(Null)", "Rielle Peddler", 1)]
+        public void CanParseCombatItem(string line, string attacker, string target, int damage, SotaLogParser.CombatLogItem.CombatResult.AttackModifiers modifier = SotaLogParser.CombatLogItem.CombatResult.AttackModifiers.None)
         {
             var log = new SotaLogParser.SotaLog();
 
@@ -71,6 +78,8 @@ namespace SotaParserTests
                 Assert.That(combatItem.WhoSource, Is.EqualTo(attacker));
                 Assert.That(combatItem.WhoTarget, Is.EqualTo(target));
                 Assert.That(combatItem.Result.Damage, Is.EqualTo(damage));
+
+                Assert.That(combatItem.Result.AttackModifier, Is.EqualTo(modifier));
             }
         }
 

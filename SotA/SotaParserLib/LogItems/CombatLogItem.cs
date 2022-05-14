@@ -14,7 +14,7 @@ namespace SotaLogParser
 
             static CombatResult()
             {
-                regexHit = new Regex(@"(hits|is\sblocked|is\sparried|is\sout\sof\sreach)\s?,\s+dealing\s+((?<dmg>[0-9,]+)\s+points?\s+of(\s+(?<mod>.+))?|no)+\sdamage((\sdue\sto\s(?<reason>.+)|\spast\sthe\s(?<reason>.+))?\sfrom\s+(?<skill>.+)?|(\sdue\sto\s(?<reason>.+)|\spast\sthe\s(?<reason>.+))?(\s+from\s+(?<skill>.+))?)\.", RegexOptions.Compiled);
+                regexHit = new Regex(@"(hits|is blocked|is parried|is out of reach)\s?,\s+dealing\s+((?<dmg>[0-9,]+)\s+points?\s+of(\s+(?<mod>.+))?|no)+\sdamage((\sdue\sto\s(?<reason>.+)|\spast\sthe\s(?<reason>.+))?\sfrom\s+(?<skill>.+)?|(\sdue\sto\s(?<reason>.+)|\spast\sthe\s(?<reason>.+))?(\s+from\s+(?<skill>.+))?)\.", RegexOptions.Compiled);
             }
 
             public CombatResult(string result)
@@ -25,7 +25,7 @@ namespace SotaLogParser
                 {
                     AttackResult = AttackResults.Hit;
 
-                    Damage = matchHit.Groups["dmg"].Success ? ((int)Decimal.Parse(matchHit.Groups["dmg"].Value, CultureInfo.InvariantCulture)) : 0;
+                    Damage = matchHit.Groups["dmg"].Success ? int.Parse(matchHit.Groups["dmg"].Value, NumberStyles.AllowThousands, CultureInfo.InvariantCulture) : 0;
 
                     Skill = matchHit.Groups["skill"].Success ? matchHit.Groups["skill"].Value : null;
 
@@ -41,7 +41,7 @@ namespace SotaLogParser
                 }
             }
 
-            public CombatResult(AttackResults result, AttackModifiers modifier, string skill, int amount)
+            public CombatResult(AttackResults result, AttackModifiers modifier, string? skill, int amount)
             {
                 AttackResult = result;
                 AttackModifier = modifier;
@@ -85,19 +85,19 @@ namespace SotaLogParser
             public AttackModifiers AttackModifier { get; } = AttackModifiers.None;
 
             public int Damage { get; }
-            public string Skill { get; }
-            public string Modifier { get; }
-            public string Reason { get; }
+            public string? Skill { get; }
+            public string? Modifier { get; }
+            public string? Reason { get; }
         }
 
-        public CombatLogItem(DateTime timestamp, string path, int lineNumber, string line, string restOfLine, string src, string target, string result) : base(timestamp, path, lineNumber, line, restOfLine)
+        public CombatLogItem(DateTime timestamp, string? path, int lineNumber, string line, string restOfLine, string src, string target, string result) : base(timestamp, path, lineNumber, line, restOfLine)
         {
             WhoSource = src;
             WhoTarget = target;
             Result = new CombatResult(result);
         }
 
-        public CombatLogItem(DateTime timestamp, string path, int lineNumber, string line, string restOfLine, string src, string target, CombatResult result) : base(timestamp, path, lineNumber, line, restOfLine)
+        public CombatLogItem(DateTime timestamp, string? path, int lineNumber, string line, string restOfLine, string src, string target, CombatResult result) : base(timestamp, path, lineNumber, line, restOfLine)
         {
             WhoSource = src;
             WhoTarget = target;

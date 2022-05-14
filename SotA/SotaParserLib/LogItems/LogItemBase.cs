@@ -14,9 +14,9 @@ namespace SotaLogParser
         public string Line { get; }
         public string RestOfLine { get; }
         public int LineNumber { get; set;  }
-        public string FileName { get; set;  }
+        public string? FileName { get; set;  }
 
-        public LogItemBase(DateTime timestamp, string fileName, int lineNumber, string line, string restOfLine)
+        public LogItemBase(DateTime timestamp, string? fileName, int lineNumber, string line, string restOfLine)
         {
             Timestamp = timestamp;
             TimestampString = $"{timestamp.Year:D4}-{timestamp.Month:D2}-{timestamp.Day:D2} {timestamp.Hour:D2}:{timestamp.Minute:D2}:{timestamp.Second:D2}";

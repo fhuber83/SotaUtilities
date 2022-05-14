@@ -505,7 +505,7 @@ namespace LogAnalyzer
             }
         }
 
-        private CancellationTokenSource ctsCancelLoad = null;
+        private CancellationTokenSource? ctsCancelLoad = null;
 
         /// <summary>
         /// 

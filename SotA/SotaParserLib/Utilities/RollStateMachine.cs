@@ -18,10 +18,10 @@ namespace SotaLogParser
         private States State = States.Idle;
 
         public DateTime Timestamp { get; private set; }
-        public string ItemName { get; private set; }
+        public string? ItemName { get; private set; }
         public int ItemValue { get; private set; }
         public int LineNumber { get; private set; }
-        public string FilePath { get; private set; }
+        public string? FilePath { get; private set; }
 
         public void Reset()
         {
@@ -33,7 +33,7 @@ namespace SotaLogParser
             State = States.Idle;
         }
 
-        public void Begin(DateTime time, string path, int lineNumber, string itemName, int value, string line, string lineRest)
+        public void Begin(DateTime time, string? path, int lineNumber, string itemName, int value, string line, string lineRest)
         {
             Timestamp = time;
             ItemName = itemName;
@@ -52,7 +52,7 @@ namespace SotaLogParser
             State = States.Rolling;
         }
 
-        public string WinnerName { get; private set; }
+        public string? WinnerName { get; private set; }
 
         public void Roll(string name, int roll, bool winner, string line, string lineRest)
         {
@@ -62,7 +62,6 @@ namespace SotaLogParser
             Rolls.Add(name, roll);
 
             LineBuilder.AppendLine(line);
-            //LineRestBuilder.Append(lineRest);
 
             if (winner)
             {
@@ -85,6 +84,12 @@ namespace SotaLogParser
         {
             if(State == States.Idle)
                 throw new InvalidOperationException("Cannot end unless in state \"Rolling\"");
+
+            if (ItemName is null)
+                throw new InvalidOperationException("ItemName must not be null");
+
+            if (WinnerName is null)
+                throw new InvalidOperationException("WinnerName must not be null");
 
             var item = new LootRollItem(Timestamp, FilePath, LineNumber, LineBuilder.ToString(), LineRestBuilder.ToString(), ItemName, WinnerName, ItemValue);
 

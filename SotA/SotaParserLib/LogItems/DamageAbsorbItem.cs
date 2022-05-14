@@ -6,7 +6,7 @@ namespace SotaLogParser
 {
     public class DamageAbsorbItem : LogItemBase
     {
-        public DamageAbsorbItem(DateTime timestamp, string path, int lineNumber, string line, string restOfLine, string playerName, int damageAbsorbed, int focusLost) : base(timestamp, path, lineNumber, line, restOfLine)
+        public DamageAbsorbItem(DateTime timestamp, string? path, int lineNumber, string line, string restOfLine, string playerName, int damageAbsorbed, int focusLost) : base(timestamp, path, lineNumber, line, restOfLine)
         {
             PlayerName = playerName;
             DamageAbsorbed = damageAbsorbed;

@@ -34,32 +34,30 @@ namespace SotaLogParser
             regexTimestamp = new Regex(@"^\[(?<month>\d+)\/(?<day>\d+)\/(?<year>\d+)\s(?<hour>\d+):(?<minute>\d+):(?<second>\d+)\s(?<AmPm>[AP]M)\]\s(?<rest>.*)$", RegexOptions.Compiled);
             regexTimestamp2 = new Regex(@"^\[\d{2}:\d{2}\]\s+(?<rest>.*)$", RegexOptions.Compiled);
 
-            regexHit = new Regex(@"^(?<attacker>[\w\(\)\d',<> ]+)(\[PVP\])?\sattacks\s(?<target>[\w'\(\)\d,<> ]+) and (?<result>.*)$", RegexOptions.Compiled);
-            regexHeal = new Regex(@"^(?<patient>[\w\(\)\d'<> ]+)(\[PVP\])?\sis\shealed\sfor\s(?<amount>[\d,]+)\spoints?\sof\shealth(?<crit>\s\(critical\)\s|\s)by\s(?<healer>[\w\(\)\d'\<\> ]+)(\[PVP\])?.$", RegexOptions.Compiled);
-            regexHealWithoutHealer = new Regex(@"^(?<patient>[\w\(\)\d'<> ]+)(\[PVP\])?\sis\shealed\sfor\s(?<amount>[\d,]+)\spoints?\sof\shealth(?<crit>\s\(critical\)\.|\.)$", RegexOptions.Compiled);
-            regexChat = new Regex(@"^(?<name>[\w<>' ]+)(\[PVP\])?\s\(To\s(?<chat>[\w ]+)(\[PVP\])?\):\s(?<msg>.+)$", RegexOptions.Compiled);
-            regexLoot = new Regex(@"^(?<name>[\w<>' ]+)\slooted\san\sitem\s\((?<itemBase>.+)\)\.$", RegexOptions.Compiled);
-            regexRoll = new Regex(@"^(?<name>[\w<>' ]+)\srolled\s(?<roll>\d+)$", RegexOptions.Compiled);
-            regexRollWin = new Regex(@"^(?<name>[\w<>' ]+)\sWON\swith\s(?<roll>\d+)$", RegexOptions.Compiled);
-            regexRollStart = new Regex(@"^Roll\sresults\sfor\s(?<itemBase>[\w\-\(\)\+,:' ]+)\s+\(\s+Value:\s+(?<value>\d+)\)$", RegexOptions.Compiled);
-            regexHarvest = new Regex(@"^(?<name>[\w<>' ]+)\sharvested\san\sitem\s\((?<itemBase>.+)\)\.", RegexOptions.Compiled);
-            regexHarvest2 = new Regex(@"^ItemBase\s\((?<itemBase>.*)\)\sadded\sto\sinventory\.$", RegexOptions.Compiled);
-            regexLevelUp = new Regex(@"^(?<name>[\w<>' ]+)'s\sskill\s\((?<skill>[\w' -]+)\)\shas\sincreased\sto\slevel\s(?<level>\d+)!$", RegexOptions.Compiled);
-            regexRhapsodyOfRecovery = new Regex(@"^(?<player>[\w\d<>' ]+)(\[PVP\])?\sadds\s(?<amount>\d+)\spoints of focus by ((?<source>[\w<>' ]+(\[PVP\])?)'s )?Rhapsody of Recovery.$", RegexOptions.Compiled);
+            regexHit = new Regex(@"^(?<attacker>[\w\(\)\d',<> -]+)(\[PVP\])? attacks (?<target>[\w'\(\)\d,<> -]+) and (?<result>.*)$", RegexOptions.Compiled);
+            regexDamageTaken = new Regex(@"^(?<who>[\w\(\)\d',<> ]+)(\[PVP\])?\stakes\s(?<amount>[\d,]+) points? of (?<modifier>(damage|critical damage|glancing damage due to armor))( from (?<skill>.*))?.$", RegexOptions.Compiled);
+            regexHeal = new Regex(@"^(?<patient>[\w\(\)\d'<> -]+)(\[PVP\])? is healed for (?<amount>[\d,]+) points? of health(?<crit> \(critical\) | )by (?<healer>[\w\(\)\d'\<\> ]+)(\[PVP\])?.$", RegexOptions.Compiled);
+            regexHealWithoutHealer = new Regex(@"^(?<patient>[\w\(\)\d'<> ]+)(\[PVP\])? is healed for\s(?<amount>[\d,]+) points? of health(?<crit> \(critical\)\.|\.)$", RegexOptions.Compiled);
+            regexChat = new Regex(@"^(?<name>[\w<>' ]+)(\[PVP\])? \(To (?<chat>[\w ]+)(\[PVP\])?\): (?<msg>.+)$", RegexOptions.Compiled);
+            regexLoot = new Regex(@"^(?<name>[\w<>' ]+) looted an item \((?<itemBase>.+)\)\.$", RegexOptions.Compiled);
+            regexRoll = new Regex(@"^(?<name>[\w<>' ]+) rolled (?<roll>\d+)$", RegexOptions.Compiled);
+            regexRollWin = new Regex(@"^(?<name>[\w<>' ]+) WON with (?<roll>\d+)$", RegexOptions.Compiled);
+            regexRollStart = new Regex(@"^Roll results for (?<itemBase>[\w\-\(\)\+,:' ]+) \(\s*Value:\s+(?<value>\d+)\)$", RegexOptions.Compiled);
+            regexHarvest = new Regex(@"^(?<name>[\w<>' ]+) harvested an item \((?<itemBase>.+)\)\.", RegexOptions.Compiled);
+            regexHarvest2 = new Regex(@"^Item \((?<item>.*)\) added to inventory\.$", RegexOptions.Compiled);
+            regexLevelUp = new Regex(@"^(?<name>[\w<>' ]+)'s skill \((?<skill>[\w' -]+)\) has increased to level (?<level>\d+)!$", RegexOptions.Compiled);
+            regexRhapsodyOfRecovery = new Regex(@"^(?<player>[\w\d<>' -]+)(\[PVP\])? adds (?<amount>\d+) points of focus by ((?<source>[\w<>' ]+(\[PVP\])?)'s )?Rhapsody of Recovery.$", RegexOptions.Compiled);
             regexDamageAbsorb = new Regex(@"^([\w<>' ]+)\ absorbs (\d+) points of damage through ([-\d]+) focus.$", RegexOptions.Compiled);
             regexAdvLevelUp = new Regex(@"^(?<name>[\w<>' ]+)'s Adventurer level has increased to (?<level>\d+)!$", RegexOptions.Compiled);
             regexProdLevelUp = new Regex(@"^(?<name>[\w<>' ]+)'s Producer level has increased to (?<level>\d+)!$", RegexOptions.Compiled);
-            
-            // TODO this Regex probably needs some work!
-            regexDamageTaken = new Regex(@"^(?<who>[\w\(\)\d'<> ]+)(\[PVP\])?\stakes\s(?<amount>\d+)\spoints\sof\sdamage(\sfrom\s(?<skill>.*))?.$", RegexOptions.Compiled);
         }
 
-        public SotaLog(string path = null)
+        public SotaLog(string? path = null)
         {
             Path = path;
         }
 
-        private string Path;
+        private string? Path;
         private int LineNumber = 1;
         private RollStateMachine RollSTM = new RollStateMachine();
 
@@ -68,9 +66,9 @@ namespace SotaLogParser
         /// </summary>
         /// <param name="line"></param>
         /// <returns></returns>
-        public LogItemBase ParseLine(string line)
+        public LogItemBase? ParseLine(string line)
         {
-            LogItemBase parsedItem = null;
+            LogItemBase? parsedItem = null;
 
             var matchTime = regexTimestamp.Match(line);
 
@@ -315,7 +313,7 @@ namespace SotaLogParser
                                                         var itemName = matchHarvest2.Groups["itemBase"].Value;
 
                                                         var item = new LootItem(timestamp, Path, LineNumber,
-                                                            line, restOfLine, itemName, null);
+                                                            line, restOfLine, itemName, "(Null)");
 
                                                         LootItems.Add(item);
                                                         Items.Add(item);
@@ -400,10 +398,10 @@ namespace SotaLogParser
                                                                         var who = matchAbsorb.Groups[1].Value;
                                                                         var amountDmg =
                                                                             int.Parse(matchAbsorb.Groups[2]
-                                                                                .Value);
+                                                                                .Value, NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
                                                                         var amountFocus =
                                                                             int.Parse(matchAbsorb.Groups[3]
-                                                                                .Value);
+                                                                                .Value, NumberStyles.AllowThousands | NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture);
 
                                                                         var item = new DamageAbsorbItem(
                                                                             timestamp,
@@ -486,21 +484,37 @@ namespace SotaLogParser
                                                                                 var amount =
                                                                                     int.Parse(matchDamageTaken
                                                                                         .Groups["amount"]
-                                                                                        .Value);
+                                                                                        .Value, NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
 
-                                                                                string skill = matchDamageTaken.Groups["skill"].Success ? matchDamageTaken.Groups["skill"].Value : null;
+                                                                                string? skill = matchDamageTaken.Groups["skill"].Success ? matchDamageTaken.Groups["skill"].Value : null;
+
+                                                                                CombatLogItem.CombatResult.AttackModifiers modifier = CombatLogItem.CombatResult.AttackModifiers.None;
+
+                                                                                if(matchDamageTaken.Groups["modifier"].Success)
+                                                                                {
+                                                                                    switch(matchDamageTaken.Groups["modifier"].Value.Trim().ToLower())
+                                                                                    {
+                                                                                        default:
+                                                                                        case "damage":
+                                                                                            modifier = CombatLogItem.CombatResult.AttackModifiers.None;
+                                                                                            break;
+
+                                                                                        case "critical damage":
+                                                                                            modifier = CombatLogItem.CombatResult.AttackModifiers.Critical;
+                                                                                            break;
+
+                                                                                        case "glancing damage due to armor":
+                                                                                            modifier = CombatLogItem.CombatResult.AttackModifiers.Glancing;
+                                                                                            break;
+                                                                                    }
+                                                                                }
 
                                                                                 var combatItem =
                                                                                     new CombatLogItem.
                                                                                         CombatResult(
-                                                                                            CombatLogItem
-                                                                                                .CombatResult
-                                                                                                .AttackResults
-                                                                                                .Hit,
-                                                                                            CombatLogItem
-                                                                                                .CombatResult
-                                                                                                .AttackModifiers
-                                                                                                .None, skill,
+                                                                                            CombatLogItem.CombatResult.AttackResults.Hit,
+                                                                                            modifier,
+                                                                                            skill,
                                                                                             amount);
 
                                                                                 var item = new CombatLogItem(

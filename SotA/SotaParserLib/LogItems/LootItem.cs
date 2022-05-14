@@ -6,7 +6,7 @@ namespace SotaLogParser
 {
     public class LootItem : LogItemBase
     {
-        public LootItem(DateTime time, string path, int lineNumber, string line, string restOfLine, string itemName, string looterName, int itemValue = 0) : base(time, path, lineNumber, line, restOfLine)
+        public LootItem(DateTime time, string? path, int lineNumber, string line, string restOfLine, string itemName, string looterName, int itemValue = 0) : base(time, path, lineNumber, line, restOfLine)
         {
             ItemName = itemName;
             LooterName = looterName;
@@ -20,7 +20,7 @@ namespace SotaLogParser
 
     public class LootRollItem : LootItem
     {
-        public LootRollItem(DateTime time, string path, int lineNumber, string line, string restOfLine, string itemName, string looterName, int itemValue) : base(time, path, lineNumber, line, restOfLine, itemName, looterName, itemValue)
+        public LootRollItem(DateTime time, string? path, int lineNumber, string line, string restOfLine, string itemName, string looterName, int itemValue) : base(time, path, lineNumber, line, restOfLine, itemName, looterName, itemValue)
         {
         }
 
