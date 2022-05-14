@@ -64,10 +64,13 @@ namespace LogAnalyzer
 
             foreach (var skill in Log.CombatItems.Where(x => x.WhoSource.Equals(PlayerName) && !(x.Result.Skill is null)).Select(x => x.Result.Skill).Distinct())
             {
+                if (skill is null)
+                    continue;
+
                 var skillStat = new PlayerSkillStat(skill);
 
                 foreach (var foo in Log.CombatItems
-                    .Where(x => x.WhoSource.Equals(PlayerName) && !(x.Result.Skill is null) && x.Result.Skill.Equals(skill)).Select(x => x))
+                    .Where(x => x.WhoSource.Equals(PlayerName) && x.Result.Skill is not null && x.Result.Skill.Equals(skill)).Select(x => x))
                 {
                     skillStat.AddSkillUse(foo);
                 }

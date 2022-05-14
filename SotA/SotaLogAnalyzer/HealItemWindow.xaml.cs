@@ -34,6 +34,9 @@ namespace LogAnalyzer
 
         private void ButtonOpenInEditor_Clicked(object sender, RoutedEventArgs e)
         {
+            if (ItemBase.FileName is null)
+                return;
+
             NotepadPlusPlusHelper.OpenEditor(ItemBase.FileName, ItemBase.LineNumber);
         }
     }

@@ -88,10 +88,14 @@ namespace LogAnalyzer
             }
 
             // Restore old sort order
-            listViewResults.Items.SortDescriptions.Clear();
-            foreach (var sd in oldSort)
+            if (oldSort is not null && listViewResults.Items is not null)
             {
-                listViewResults.Items.SortDescriptions.Add(new SortDescription(sd.PropertyName, sd.Direction));
+                listViewResults.Items.SortDescriptions.Clear();
+
+                foreach (var sd in oldSort)
+                {
+                    listViewResults.Items.SortDescriptions.Add(new SortDescription(sd.PropertyName, sd.Direction));
+                }
             }
         }
 
@@ -171,12 +175,15 @@ namespace LogAnalyzer
             }
         }
 
-        private void ShowInEditor(LogItemBase itemBase)
+        private void ShowInEditor(LogItemBase item)
         {
-            //(Application.Current as App)?.LaunchEditor(itemBase.FileName, itemBase.LineNumber);
+            if (item.FileName is null)
+                return;
+
+            SotaLogAnalyzer.NotepadPlusPlusHelper.OpenEditor(item.FileName, item.LineNumber);
         }
 
-        public LogItemBase GoToItemBase { get; private set; } = null;
+        public LogItemBase? GoToItemBase { get; private set; } = null;
 
         private void ListViewResults_OnKeyDown(object sender, KeyEventArgs e)
         {

@@ -36,7 +36,7 @@ namespace LogAnalyzer
             InitializeComponent();
         }
 
-        private SotaLogParser.SotaLog Log;
+        private SotaLog? Log;
 
         private void ListView1_OnPreviewDragOver(object sender, DragEventArgs e)
         {
@@ -353,20 +353,26 @@ namespace LogAnalyzer
 
         private void ShowInEditor(LogItemBase itemBase)
         {
-            NotepadPlusPlusHelper.OpenEditor(itemBase.FileName, itemBase.LineNumber);
+            if (itemBase.FileName is not null)
+            {
+                NotepadPlusPlusHelper.OpenEditor(itemBase.FileName, itemBase.LineNumber);
+            }
         }
 
         private void ListViewOther_OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.F && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                var dlg = new FindWindow(Log.MiscItems);
-
-                if (dlg.ShowDialog() == true && dlg.GoToItemBase != null)
+                if (Log is not null)
                 {
-                    listViewOther.ScrollIntoView(dlg.GoToItemBase);
-                    listViewOther.SelectedItems.Clear();
-                    listViewOther.SelectedItems.Add(dlg.GoToItemBase);
+                    var dlg = new FindWindow(Log.MiscItems);
+
+                    if (dlg.ShowDialog() == true && dlg.GoToItemBase != null)
+                    {
+                        listViewOther.ScrollIntoView(dlg.GoToItemBase);
+                        listViewOther.SelectedItems.Clear();
+                        listViewOther.SelectedItems.Add(dlg.GoToItemBase);
+                    }
                 }
             }
             else if (e.Key == Key.E && Keyboard.IsKeyDown(Key.LeftCtrl))
@@ -406,13 +412,16 @@ namespace LogAnalyzer
         {
             if (e.Key == Key.F && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                var dlg = new FindWindow(Log.CombatItems.Select(x => (LogItemBase) x).ToList());
-
-                if (dlg.ShowDialog() == true && dlg.GoToItemBase != null)
+                if (Log is not null)
                 {
-                    listViewCombat.ScrollIntoView(dlg.GoToItemBase);
-                    listViewCombat.SelectedItems.Clear();
-                    listViewCombat.SelectedItems.Add(dlg.GoToItemBase);
+                    var dlg = new FindWindow(Log.CombatItems.Select(x => (LogItemBase)x).ToList());
+
+                    if (dlg.ShowDialog() == true && dlg.GoToItemBase != null)
+                    {
+                        listViewCombat.ScrollIntoView(dlg.GoToItemBase);
+                        listViewCombat.SelectedItems.Clear();
+                        listViewCombat.SelectedItems.Add(dlg.GoToItemBase);
+                    }
                 }
             }
             else if (e.Key == Key.E && Keyboard.IsKeyDown(Key.LeftCtrl))
@@ -431,13 +440,16 @@ namespace LogAnalyzer
         {
             if (e.Key == Key.F && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                var dlg = new FindWindow(Log.HealItems.Select(x => (LogItemBase)x).ToList());
-
-                if (dlg.ShowDialog() == true && dlg.GoToItemBase != null)
+                if (Log is not null)
                 {
-                    listViewHeals.ScrollIntoView(dlg.GoToItemBase);
-                    listViewHeals.SelectedItems.Clear();
-                    listViewHeals.SelectedItems.Add(dlg.GoToItemBase);
+                    var dlg = new FindWindow(Log.HealItems.Select(x => (LogItemBase)x).ToList());
+
+                    if (dlg.ShowDialog() == true && dlg.GoToItemBase != null)
+                    {
+                        listViewHeals.ScrollIntoView(dlg.GoToItemBase);
+                        listViewHeals.SelectedItems.Clear();
+                        listViewHeals.SelectedItems.Add(dlg.GoToItemBase);
+                    }
                 }
             }
             else if (e.Key == Key.E && Keyboard.IsKeyDown(Key.LeftCtrl))
@@ -457,13 +469,16 @@ namespace LogAnalyzer
             // Ctrl-F, Search
             if (e.Key == Key.F && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                var dlg = new FindWindow(Log.ChatItems.Select(x => (LogItemBase)x).ToList());
-
-                if (dlg.ShowDialog() == true && dlg.GoToItemBase != null)
+                if (Log is not null)
                 {
-                    listViewChat.ScrollIntoView(dlg.GoToItemBase);
-                    listViewChat.SelectedItems.Clear();
-                    listViewChat.SelectedItems.Add(dlg.GoToItemBase);
+                    var dlg = new FindWindow(Log.ChatItems.Select(x => (LogItemBase)x).ToList());
+
+                    if (dlg.ShowDialog() == true && dlg.GoToItemBase != null)
+                    {
+                        listViewChat.ScrollIntoView(dlg.GoToItemBase);
+                        listViewChat.SelectedItems.Clear();
+                        listViewChat.SelectedItems.Add(dlg.GoToItemBase);
+                    }
                 }
             }
 
@@ -484,13 +499,16 @@ namespace LogAnalyzer
         {
             if (e.Key == Key.F && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                var dlg = new FindWindow(Log.LootItems.Select(x => (LogItemBase)x).ToList());
-
-                if (dlg.ShowDialog() == true && dlg.GoToItemBase != null)
+                if (Log is not null)
                 {
-                    listViewLoot.ScrollIntoView(dlg.GoToItemBase);
-                    listViewLoot.SelectedItems.Clear();
-                    listViewLoot.SelectedItems.Add(dlg.GoToItemBase);
+                    var dlg = new FindWindow(Log.LootItems.Select(x => (LogItemBase)x).ToList());
+
+                    if (dlg.ShowDialog() == true && dlg.GoToItemBase != null)
+                    {
+                        listViewLoot.ScrollIntoView(dlg.GoToItemBase);
+                        listViewLoot.SelectedItems.Clear();
+                        listViewLoot.SelectedItems.Add(dlg.GoToItemBase);
+                    }
                 }
             }
             else if (e.Key == Key.E && Keyboard.IsKeyDown(Key.LeftCtrl))

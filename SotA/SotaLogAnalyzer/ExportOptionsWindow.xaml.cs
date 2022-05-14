@@ -73,10 +73,10 @@ namespace LogAnalyzer
             }
         }
 
-        public List<string> SelectedChats { get; private set; }
-        public List<string> SelectedLooters { get; private set; }
-        public List<string> SelectedCombattants { get; private set; }
-        public List<string> SelectedHealers { get; private set; }
+        public List<string>? SelectedChats { get; private set; }
+        public List<string>? SelectedLooters { get; private set; }
+        public List<string>? SelectedCombattants { get; private set; }
+        public List<string>? SelectedHealers { get; private set; }
         public bool ExportMisc { get; private set; } = false;
 
         private void ButtonOK_OnClick(object sender, RoutedEventArgs e)
@@ -92,7 +92,10 @@ namespace LogAnalyzer
                     {
                         if (cbChat.IsChecked == true)
                         {
-                            SelectedChats.Add(cbChat.Content as string);
+                            if (cbChat.Content is string strChat)
+                            {
+                                SelectedChats.Add(strChat);
+                            }
                         }
                     }
                 }
@@ -109,7 +112,10 @@ namespace LogAnalyzer
                     {
                         if (cbLoot.IsChecked == true)
                         {
-                            SelectedLooters.Add(cbLoot.Content as string);
+                            if (cbLoot.Content is string strLoot)
+                            {
+                                SelectedLooters.Add(strLoot);
+                            }
                         }
                     }
                 }
@@ -126,7 +132,10 @@ namespace LogAnalyzer
                     {
                         if (cbCombattant.IsChecked == true)
                         {
-                            SelectedCombattants.Add(cbCombattant.Content as string);
+                            if (cbCombattant.Content is string strCombattant)
+                            {
+                                SelectedCombattants.Add(strCombattant);
+                            }
                         }
                     }
                 }
@@ -143,7 +152,10 @@ namespace LogAnalyzer
                     {
                         if (cbHealer.IsChecked == true)
                         {
-                            SelectedHealers.Add(cbHealer.Content as string);
+                            if (cbHealer.Content is string strHealer)
+                            {
+                                SelectedHealers.Add(strHealer);
+                            }
                         }
                     }
                 }

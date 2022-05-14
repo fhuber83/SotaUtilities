@@ -78,7 +78,10 @@ namespace LogAnalyzer
             {
                 if (listViewStats.SelectedItems.Count == 1 && listViewStats.SelectedItems[0] is HealItem item)
                 {
-                    NotepadPlusPlusHelper.OpenEditor(item.FileName, item.LineNumber);
+                    if (item.FileName is not null)
+                    {
+                        NotepadPlusPlusHelper.OpenEditor(item.FileName, item.LineNumber);
+                    }
                 }
             }
         }

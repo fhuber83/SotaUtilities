@@ -22,19 +22,22 @@ namespace LogAnalyzer
     /// </summary>
     public partial class ChatItemWindow : Window
     {
-        private ChatItem ItemBase { get; }
+        private ChatItem Item { get; }
 
-        public ChatItemWindow(ChatItem itemBase)
+        public ChatItemWindow(ChatItem item)
         {
-            ItemBase = itemBase;
-            DataContext = itemBase;
+            Item = item;
+            DataContext = item;
 
             InitializeComponent();
         }
 
         private void ButtonOpenInEditor_Clicked(object sender, RoutedEventArgs e)
         {
-            NotepadPlusPlusHelper.OpenEditor(ItemBase.FileName, ItemBase.LineNumber);
+            if (Item.FileName is null)
+                return;
+
+            NotepadPlusPlusHelper.OpenEditor(Item.FileName, Item.LineNumber);
         }
     }
 }
