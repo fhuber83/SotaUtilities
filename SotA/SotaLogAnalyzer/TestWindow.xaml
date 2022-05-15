@@ -1,0 +1,21 @@
+﻿<Window x:Class="SotaLogAnalyzer.TestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SotaLogAnalyzer"
+        mc:Ignorable="d"
+        Title="Test Parser" Height="400" Width="600" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <GridSplitter Grid.Row="1" Height="4" HorizontalAlignment="Stretch" />
+
+        <TextBox x:Name="TextBoxInput" Grid.Row="0" Margin="10,14,10,10" TextWrapping="Wrap" FontFamily="Consolas" KeyDown="TextBoxInput_KeyDown"/>
+        <TextBox x:Name="TextBoxParseResult" Grid.Row="2" IsReadOnly="True" Margin="10,10,10,10" TextWrapping="NoWrap" FontFamily="Consolas" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+    </Grid>
+</Window>

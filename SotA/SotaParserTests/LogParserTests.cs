@@ -65,6 +65,7 @@ namespace SotaParserTests
         [TestCase(@"[5/13/2022 2:28:39 PM] [14:28] Spawn Sobek <Apple Pie> takes 1,024 points of critical damage.", "(Null)", "Spawn Sobek <Apple Pie>", 1024, SotaLogParser.CombatLogItem.CombatResult.AttackModifiers.Critical)]
         [TestCase(@"[4/17/2022 12:58:37 AM] [00:58] Greater Daemon takes 21 points of glancing damage due to armor from Daemon Chaos.", "(Null)", "Greater Daemon", 21, SotaLogParser.CombatLogItem.CombatResult.AttackModifiers.Glancing)]
         [TestCase(@"[4/17/2022 2:06:48 PM] [14:06] Rielle Peddler takes 1 point of damage.", "(Null)", "Rielle Peddler", 1)]
+        [TestCase(@"[4/20/2022 6:27:21 PM] [18:27] Sheamous Spearshaker attacks Brign, Lord of Water and is blocked , dealing 57 points of damage past the block from Thrust.", "Sheamous Spearshaker", "Brign, Lord of Water", 57)]
         public void CanParseCombatItem(string line, string attacker, string target, int damage, SotaLogParser.CombatLogItem.CombatResult.AttackModifiers modifier = SotaLogParser.CombatLogItem.CombatResult.AttackModifiers.None)
         {
             var log = new SotaLogParser.SotaLog();

@@ -361,6 +361,7 @@ namespace LogAnalyzer
 
         private void ListViewOther_OnKeyDown(object sender, KeyEventArgs e)
         {
+            // CTRL-F -> Open search window
             if (e.Key == Key.F && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 if (Log is not null)
@@ -375,6 +376,8 @@ namespace LogAnalyzer
                     }
                 }
             }
+
+            // CTRL-E -> Open current item in notepad++
             else if (e.Key == Key.E && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 if (listViewOther.SelectedItems.Count == 1)
@@ -384,6 +387,18 @@ namespace LogAnalyzer
                         ShowInEditor(selectedItem);
                     }
                 }
+            }
+
+            // CTRL-T -> Open Test Window
+            else if(e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                var dlg = new TestWindow
+                {
+                    Owner = this,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner
+                };
+
+                dlg.Show();
             }
         }
 
