@@ -75,7 +75,8 @@ namespace LogWatcherTest
         public bool ShowHeals = false;
         public bool ShowPartyChat = true;
         public bool ShowLoot = false;
-        
+        public bool ShowZoneChat = true;
+
         protected virtual void OnNewLine(FileInfo fileInfo, string line)
         {
             var item = fileInfo.Log.ParseLine(line);
@@ -113,6 +114,10 @@ namespace LogWatcherTest
                             case "Party":
                                 color = ConsoleColor.Green;
                                 show = ShowPartyChat;
+                                break;
+                            case "Zone":
+                                color = ConsoleColor.Magenta;
+                                show = ShowZoneChat;
                                 break;
                         }
 

@@ -93,6 +93,20 @@ namespace LogWatcherTest
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
 
+                    case ConsoleKey.G:
+                        sotaWatch.ShowGuildChat = !sotaWatch.ShowGuildChat;
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("   [Guild chat : " + (sotaWatch.ShowGuildChat ? "ON" : "OFF") + "]");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+
+                    case ConsoleKey.Z:
+                        sotaWatch.ShowZoneChat = !sotaWatch.ShowZoneChat;
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("   [Zone chat : " + (sotaWatch.ShowZoneChat ? "ON" : "OFF") + "]");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+
                     case ConsoleKey.Delete:
                         Console.Clear();
                         break;
