@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
-namespace LogWatcherTest
+﻿namespace LogWatcherTest
 {
     class Program
     {
@@ -21,12 +16,19 @@ namespace LogWatcherTest
 
             var done = false;
 
+
+            //
+            //  Main user input loop. Log watcher is running in the background
+            //
             while (!done)
             {
                 var key = Console.ReadKey(true);
 
                 switch (key.Key)
                 {
+                    //
+                    // Ctrl-D or [Esc] -> Exit program
+                    //
                     case ConsoleKey.D:
                         if (key.Modifiers.HasFlag(ConsoleModifiers.Control))
                         { 
@@ -34,16 +36,26 @@ namespace LogWatcherTest
                             done = true;
                         }
                         break;
-
                     case ConsoleKey.Escape:
                         Console.WriteLine("Exiting...");
                         done = true;
                         break;
 
+
+                    //
+                    // [F5] -> Toggle verbose output
+                    //
                     case ConsoleKey.F5:
                         sotaWatch.VerboseOutput = !sotaWatch.VerboseOutput;
                         break;
 
+
+                    //
+                    // CTRL-L or [Del] -> Clear screen
+                    //
+                    case ConsoleKey.Delete:
+                        Console.Clear();
+                        break;
                     case ConsoleKey.L:
                         if (key.Modifiers.HasFlag(ConsoleModifiers.Control))
                         {
@@ -57,7 +69,11 @@ namespace LogWatcherTest
                             Console.ForegroundColor = ConsoleColor.White;
                         }
                         break;
-                    
+
+
+                    //
+                    // M -> Toggle Miscellaneous items
+                    //
                     case ConsoleKey.M:
                         sotaWatch.ShowMiscItems = !sotaWatch.ShowMiscItems;
                         Console.ForegroundColor = ConsoleColor.Blue;
@@ -65,6 +81,10 @@ namespace LogWatcherTest
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
                     
+
+                    //
+                    // T -> Toggle Trader chat
+                    //
                     case ConsoleKey.T:
                         sotaWatch.ShowTradeChat = !sotaWatch.ShowTradeChat;
                         Console.ForegroundColor = ConsoleColor.Blue;
@@ -72,6 +92,10 @@ namespace LogWatcherTest
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
                     
+
+                    //
+                    // U -> Toggle Universe chat
+                    //
                     case ConsoleKey.U:
                         sotaWatch.ShowUniverseChat = !sotaWatch.ShowUniverseChat;
                         Console.ForegroundColor = ConsoleColor.Blue;
@@ -79,6 +103,10 @@ namespace LogWatcherTest
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
                     
+
+                    //
+                    // H -> Toggle "show heals"
+                    //
                     case ConsoleKey.H:
                         sotaWatch.ShowHeals = !sotaWatch.ShowHeals;
                         Console.ForegroundColor = ConsoleColor.Blue;
@@ -86,6 +114,10 @@ namespace LogWatcherTest
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
                     
+
+                    //
+                    // O -> Toggle "Show Loot"
+                    //
                     case ConsoleKey.O:
                         sotaWatch.ShowLoot = !sotaWatch.ShowLoot;
                         Console.ForegroundColor = ConsoleColor.Blue;
@@ -93,6 +125,10 @@ namespace LogWatcherTest
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
 
+
+                    //
+                    // G -> Toggle guild chat
+                    //
                     case ConsoleKey.G:
                         sotaWatch.ShowGuildChat = !sotaWatch.ShowGuildChat;
                         Console.ForegroundColor = ConsoleColor.Blue;
@@ -100,15 +136,15 @@ namespace LogWatcherTest
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
 
+
+                    //
+                    // Z -> Toggle Zone Chat
+                    //
                     case ConsoleKey.Z:
                         sotaWatch.ShowZoneChat = !sotaWatch.ShowZoneChat;
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.WriteLine("   [Zone chat : " + (sotaWatch.ShowZoneChat ? "ON" : "OFF") + "]");
                         Console.ForegroundColor = ConsoleColor.White;
-                        break;
-
-                    case ConsoleKey.Delete:
-                        Console.Clear();
                         break;
                 }
             }
