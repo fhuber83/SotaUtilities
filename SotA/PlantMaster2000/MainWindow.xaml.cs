@@ -80,9 +80,23 @@ namespace PlantMaster2000
         /// <param name="e"></param>
         private void OnCopyToClipboard(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Clipboard.SetText(GetClipboardText() ?? "(Null)");
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private string? GetClipboardText()
+        {
             if (PlantType.SelectedItem is PlantInfo plant)
             {
                 var sb = new StringBuilder();
+
+
 
                 string location = LocationGreenhouse.IsChecked == true
                     ? "Greenhouse"
@@ -116,10 +130,11 @@ namespace PlantMaster2000
 
                 sb.AppendLine();
 
-                Clipboard.SetText(sb.ToString());
+                return sb.ToString();
             }
-        }
 
+            return null;
+        }
         
         /// <summary>
         /// Set planting time to current local time
@@ -170,6 +185,31 @@ namespace PlantMaster2000
             {
                 this.Topmost = cb.IsChecked == true;
             }
+        }
+
+        private ClipboardWoraroundWindow? clipboardWindow = null;
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var text = GetClipboardText();
+
+            if (text is not null)
+            {
+                if (clipboardWindow is null)
+                {
+                    clipboardWindow = new ClipboardWoraroundWindow(text)
+                    {
+                        Owner = this,
+                        WindowStartupLocation = WindowStartupLocation.CenterOwner
+                    };
+                }
+                else
+                {
+                    clipboardWindow.AppendText(text);
+                }
+            }
+
+            clipboardWindow.Show();
         }
     }
 }

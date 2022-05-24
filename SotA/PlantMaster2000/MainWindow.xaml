@@ -64,5 +64,6 @@
 
         <CheckBox Content="Topmost" ToolTip="Window always on top" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Checked="TopmostWindowCheckboxChanged" Unchecked="TopmostWindowCheckboxChanged"/>
         <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10" Content="To Clipboard" Width="84" Click="OnCopyToClipboard"/>
+        <Button Content="..." HorizontalAlignment="Center" Margin="110,0,0,10" VerticalAlignment="Bottom" Click="Button_Click" Width="19"/>
     </Grid>
 </Window>
