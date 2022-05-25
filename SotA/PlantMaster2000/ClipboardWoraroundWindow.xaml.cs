@@ -17,14 +17,18 @@ namespace PlantMaster2000
     /// <summary>
     /// Interaction logic for ClipboardWoraroundWindow.xaml
     /// </summary>
-    public partial class ClipboardWoraroundWindow : Window
+    public partial class ClipboardWorkaroundWindow : Window
     {
-        public ClipboardWoraroundWindow(string? text = null)
+        const string FileName = "plants.txt";
+
+
+        public ClipboardWorkaroundWindow()
         {
             InitializeComponent();
 
-            TextBox1.Text = text;
+            LoadFile();
         }
+
 
         public void AppendText(string text)
         {
@@ -38,15 +42,56 @@ namespace PlantMaster2000
             }
         }
 
-        private void ButtonClear_Click(object sender, RoutedEventArgs e)
-        {
-            TextBox1?.Clear();
-        }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Hide();
             e.Cancel = true;
+        }
+
+        
+        private void LoadFile()
+        {
+            if(System.IO.File.Exists(FileName))
+            {
+                try
+                {
+                    TextBox1.Text = System.IO.File.ReadAllText(FileName);
+                }
+                catch(Exception exception)
+                {
+                    MessageBox.Show(this, exception.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+            }
+        }
+
+
+        private void SaveFile()
+        {
+            try
+            {
+                System.IO.File.WriteAllText(FileName, TextBox1.Text);
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show(this, exception.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFile();
+        }
+
+        private void TextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                SaveFile();
+
+                e.Handled = true;
+            }
         }
     }
 }

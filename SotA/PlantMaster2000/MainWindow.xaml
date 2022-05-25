@@ -7,17 +7,48 @@
         mc:Ignorable="d"
         Title="PlantMaster™️ 2000" Height="332" MinHeight="350" Width="330" MinWidth="300" ResizeMode="CanResizeWithGrip">
     <Grid>
-        <ComboBox x:Name="PlantType" Margin="10,10,0,0" VerticalAlignment="Top" SelectedIndex="1" SelectionChanged="PlantChanged" HorizontalAlignment="Left" Width="115">
+        <ComboBox x:Name="PlantType" Margin="10,10,0,0" VerticalAlignment="Top" SelectedIndex="6" SelectionChanged="PlantChanged" HorizontalAlignment="Left" Width="115">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
+                    <TextBlock Text="{Binding Name}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Emphasized}" Value="True">
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Emphasized}" Value="False">
+                                        <Setter Property="Foreground" Value="DarkGray"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
             <ComboBox.Items>
-                <local:PlantInfo Name="Cotton" HoursToGrowInGreenhouse="8"/>
-                <local:PlantInfo Name="Garlic" HoursToGrowInGreenhouse="4"/>
-                <local:PlantInfo Name="Mandrake" HoursToGrowInGreenhouse="8"/>
-                <local:PlantInfo Name="Nightshade" HoursToGrowInGreenhouse="8"/>
+                <local:PlantInfo Name="Banana" HoursToGrowInGreenhouse="8"/>
+                <local:PlantInfo Name="Barley" HoursToGrowInGreenhouse="8"/>
+                <local:PlantInfo Name="Blue Rose" HoursToGrowInGreenhouse="4"/>
+                <local:PlantInfo Name="Carrot" HoursToGrowInGreenhouse="4"/>
+                <local:PlantInfo Name="Coconut" HoursToGrowInGreenhouse="12"/>
+                <local:PlantInfo Name="Cotton" HoursToGrowInGreenhouse="8" Emphasized="True"/>
+                <local:PlantInfo Name="Garlic" HoursToGrowInGreenhouse="4" Emphasized="True"/>
+                <local:PlantInfo Name="Hops" HoursToGrowInGreenhouse="8"/>
+                <local:PlantInfo Name="Lemon" HoursToGrowInGreenhouse="8"/>
+                <local:PlantInfo Name="Mandrake" HoursToGrowInGreenhouse="8" Emphasized="True"/>
+                <local:PlantInfo Name="Nightshade" HoursToGrowInGreenhouse="8" Emphasized="True"/>
+                <local:PlantInfo Name="Onion" HoursToGrowInGreenhouse="8"/>
+                <local:PlantInfo Name="Orange Rose" HoursToGrowInGreenhouse="4"/>
+                <local:PlantInfo Name="Pepper" HoursToGrowInGreenhouse="4"/>
+                <local:PlantInfo Name="Pink Rose" HoursToGrowInGreenhouse="4"/>
+                <local:PlantInfo Name="Potato" HoursToGrowInGreenhouse="4"/>
+                <local:PlantInfo Name="Red Grape" HoursToGrowInGreenhouse="8"/>
+                <local:PlantInfo Name="Red Rose" HoursToGrowInGreenhouse="4"/>
+                <local:PlantInfo Name="Tea Leaf" HoursToGrowInGreenhouse="12"/>
+                <local:PlantInfo Name="Wheat" HoursToGrowInGreenhouse="8"/>
+                <local:PlantInfo Name="White Grape" HoursToGrowInGreenhouse="8"/>
             </ComboBox.Items>
         </ComboBox>
 
@@ -64,6 +95,7 @@
 
         <CheckBox Content="Topmost" ToolTip="Window always on top" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Checked="TopmostWindowCheckboxChanged" Unchecked="TopmostWindowCheckboxChanged"/>
         <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10" Content="To Clipboard" Width="84" Click="OnCopyToClipboard"/>
-        <Button Content="..." HorizontalAlignment="Center" Margin="110,0,0,10" VerticalAlignment="Bottom" Click="Button_Click" Width="19"/>
+        <Button Content="..." HorizontalAlignment="Center" Margin="110,0,0,10" VerticalAlignment="Bottom" Click="ButtonShowList_Click" Width="19" ToolTip="Open list"/>
+        <Button Content="+" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="156,0,0,10" Width="20" Click="ButtonAddToList_Click" ToolTip="Add to list"/>
     </Grid>
 </Window>

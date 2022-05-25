@@ -187,29 +187,37 @@ namespace PlantMaster2000
             }
         }
 
-        private ClipboardWoraroundWindow? clipboardWindow = null;
+        private ClipboardWorkaroundWindow? clipboardWindow = null;
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ShowClipboardWindow()
+        {
+            if (clipboardWindow is null)
+            {
+                clipboardWindow = new ClipboardWorkaroundWindow
+                {
+                    Owner = this,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner
+                };
+            }
+
+            clipboardWindow.Show();
+        }
+
+        private void ButtonShowList_Click(object sender, RoutedEventArgs e)
+        {
+            ShowClipboardWindow();
+        }
+
+        private void ButtonAddToList_Click(object sender, RoutedEventArgs e)
         {
             var text = GetClipboardText();
 
             if (text is not null)
             {
-                if (clipboardWindow is null)
-                {
-                    clipboardWindow = new ClipboardWoraroundWindow(text)
-                    {
-                        Owner = this,
-                        WindowStartupLocation = WindowStartupLocation.CenterOwner
-                    };
-                }
-                else
-                {
-                    clipboardWindow.AppendText(text);
-                }
-            }
+                ShowClipboardWindow();
 
-            clipboardWindow.Show();
+                clipboardWindow?.AppendText(text);
+            }
         }
     }
 }
