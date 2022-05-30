@@ -78,12 +78,9 @@ namespace LogAnalyzer
 
                 foreach(var foo in Log.CombatItems.Where(x => x.WhoSource.Equals(player)).Select(x => x))
                 {
-                    if (foo.Result.Skill is not null)
-                    {
-                        playerStats.AddDamage(foo.Result.Damage, foo.Result.Skill);
+                    playerStats.AddDamage(foo.Result.Damage, foo.Result.Skill ?? "(Null)");
 
-                        SumAllDamage += foo.Result.Damage;
-                    }
+                    SumAllDamage += foo.Result.Damage;
                 }
 
                 stats.Add(playerStats);
