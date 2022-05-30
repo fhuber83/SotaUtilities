@@ -1,0 +1,20 @@
+﻿<Window x:Class="XpHelper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XpHelper"
+        mc:Ignorable="d"
+        Title="SotA XP Helper" Height="140" Width="285" MinWidth="220" MinHeight="130" ResizeMode="CanResizeWithGrip">
+    <Grid>
+        <Label Content="Adv:" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxAdvXp" IsReadOnly="True" Margin="53,10,60,0" TextWrapping="NoWrap" TextAlignment="Right" VerticalAlignment="Top" FontFamily="Consolas" FontSize="14"/>
+        <Button Content="Copy" Margin="0,9,6,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="40" Click="ButtonCopyAdvXp_Click"/>
+
+        <Label Content="Prod:" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxProdXp" IsReadOnly="True" Margin="53,35,60,0" TextWrapping="NoWrap" TextAlignment="Right" VerticalAlignment="Top" FontFamily="Consolas" FontSize="14"/>
+        <Button Content="Copy" Margin="0,34,6,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="40" Click="ButtonCopyProdXp_Click"/>
+
+        <Button Content="Update" HorizontalAlignment="Center" Margin="0,0,0,10" Click="ButtonUpdate_Click" Width="70" Height="22" VerticalAlignment="Bottom"/>
+    </Grid>
+</Window>

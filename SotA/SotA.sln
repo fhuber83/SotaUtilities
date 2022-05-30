@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SotaChatConsole", "SotaChat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SotaLogAnalyzer", "SotaLogAnalyzer\SotaLogAnalyzer.csproj", "{3D4C21BA-1046-4032-8117-70F2B213EB3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotaParserTests", "SotaParserTests\SotaParserTests.csproj", "{E090CD24-A043-4DC8-B993-FD849A4C5C05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SotaParserTests", "SotaParserTests\SotaParserTests.csproj", "{E090CD24-A043-4DC8-B993-FD849A4C5C05}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatLogUI", "ChatLogUI\ChatLogUI.csproj", "{2416B38E-DC59-41A6-8082-4EED13A0A120}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpHelper", "XpHelper\XpHelper.csproj", "{3723D27F-5A11-45D2-86C4-C0FB2F0F2B3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{E090CD24-A043-4DC8-B993-FD849A4C5C05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E090CD24-A043-4DC8-B993-FD849A4C5C05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E090CD24-A043-4DC8-B993-FD849A4C5C05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2416B38E-DC59-41A6-8082-4EED13A0A120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2416B38E-DC59-41A6-8082-4EED13A0A120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2416B38E-DC59-41A6-8082-4EED13A0A120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2416B38E-DC59-41A6-8082-4EED13A0A120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3723D27F-5A11-45D2-86C4-C0FB2F0F2B3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3723D27F-5A11-45D2-86C4-C0FB2F0F2B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3723D27F-5A11-45D2-86C4-C0FB2F0F2B3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3723D27F-5A11-45D2-86C4-C0FB2F0F2B3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
