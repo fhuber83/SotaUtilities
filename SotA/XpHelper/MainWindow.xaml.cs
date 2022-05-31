@@ -31,12 +31,16 @@ namespace XpHelper
 
             if (adv.HasValue)
             {
-                TextBoxAdvXp.Text = String.Format("{0:n0}", adv);
+                TextBoxAdvXp.Text = String.Format("{0:n0}", adv.Value);
+                var xpToNext = XpTable.HowMuchToNextLevel(adv.Value);
+                TextBoxAdvXp.ToolTip = $"{xpToNext:n0} to next level";
             }
 
             if (prod.HasValue)
             {
                 TextBoxProdXp.Text = String.Format("{0:n0}", prod);
+                var xpToNext = XpTable.HowMuchToNextLevel(prod.Value);
+                TextBoxProdXp.ToolTip = $"{xpToNext:n0} to next level";
             }
         }
 
