@@ -15,7 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SotaParserTests", "SotaPars
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatLogUI", "ChatLogUI\ChatLogUI.csproj", "{2416B38E-DC59-41A6-8082-4EED13A0A120}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpHelper", "XpHelper\XpHelper.csproj", "{3723D27F-5A11-45D2-86C4-C0FB2F0F2B3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XpHelper", "XpHelper\XpHelper.csproj", "{3723D27F-5A11-45D2-86C4-C0FB2F0F2B3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotaSavegameLib", "SotaSavegameLib\SotaSavegameLib.csproj", "{EB0C45DF-94B5-49CC-93F6-17C922514979}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotaSavegameViewer", "SotaSavegameViewer\SotaSavegameViewer.csproj", "{993248D6-A0B1-4A19-968F-EAEDE52BD969}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotaSavegameTests", "SotaSavegameTests\SotaSavegameTests.csproj", "{1344BE2E-B0DF-4E9D-9E9A-DA7BF5C11CC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +57,18 @@ Global
 		{3723D27F-5A11-45D2-86C4-C0FB2F0F2B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3723D27F-5A11-45D2-86C4-C0FB2F0F2B3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3723D27F-5A11-45D2-86C4-C0FB2F0F2B3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB0C45DF-94B5-49CC-93F6-17C922514979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB0C45DF-94B5-49CC-93F6-17C922514979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB0C45DF-94B5-49CC-93F6-17C922514979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB0C45DF-94B5-49CC-93F6-17C922514979}.Release|Any CPU.Build.0 = Release|Any CPU
+		{993248D6-A0B1-4A19-968F-EAEDE52BD969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{993248D6-A0B1-4A19-968F-EAEDE52BD969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{993248D6-A0B1-4A19-968F-EAEDE52BD969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{993248D6-A0B1-4A19-968F-EAEDE52BD969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1344BE2E-B0DF-4E9D-9E9A-DA7BF5C11CC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1344BE2E-B0DF-4E9D-9E9A-DA7BF5C11CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1344BE2E-B0DF-4E9D-9E9A-DA7BF5C11CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1344BE2E-B0DF-4E9D-9E9A-DA7BF5C11CC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

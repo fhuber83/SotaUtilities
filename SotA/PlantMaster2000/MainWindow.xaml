@@ -19,7 +19,7 @@
                                         <Setter Property="Foreground" Value="Black"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Emphasized}" Value="False">
-                                        <Setter Property="Foreground" Value="DarkGray"/>
+                                        <Setter Property="Foreground" Value="Black"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -47,6 +47,7 @@
                 <local:PlantInfo Name="Red Grape" HoursToGrowInGreenhouse="8"/>
                 <local:PlantInfo Name="Red Rose" HoursToGrowInGreenhouse="4"/>
                 <local:PlantInfo Name="Tea Leaf" HoursToGrowInGreenhouse="12"/>
+                <local:PlantInfo Name="Tomato" HoursToGrowInGreenhouse="4"/>
                 <local:PlantInfo Name="Wheat" HoursToGrowInGreenhouse="8"/>
                 <local:PlantInfo Name="White Grape" HoursToGrowInGreenhouse="8"/>
             </ComboBox.Items>

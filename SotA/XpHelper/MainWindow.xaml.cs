@@ -1,17 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace XpHelper
 {
@@ -27,20 +15,20 @@ namespace XpHelper
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            XpHelpers.GetXpValues(out ulong? adv, out ulong? prod);
+            XpHelpers.GetXpValues(out ulong? adv, out ulong? prod, out int? currentAdvLvl, out int? currentProdLvl);
 
-            if (adv.HasValue)
+            if (adv.HasValue && currentAdvLvl.HasValue)
             {
-                TextBoxAdvXp.Text = String.Format("{0:n0}", adv.Value);
+                TextBoxAdvXp.Text = string.Format("{0:n0}", adv.Value);
                 var xpToNext = XpTable.HowMuchToNextLevel(adv.Value);
-                TextBoxAdvXp.ToolTip = $"{xpToNext:n0} to next level";
+                TextBoxAdvXp.ToolTip = $"{xpToNext:n0} to level {currentAdvLvl.Value + 1}";
             }
 
-            if (prod.HasValue)
+            if (prod.HasValue && currentProdLvl.HasValue)
             {
-                TextBoxProdXp.Text = String.Format("{0:n0}", prod);
+                TextBoxProdXp.Text = string.Format("{0:n0}", prod);
                 var xpToNext = XpTable.HowMuchToNextLevel(prod.Value);
-                TextBoxProdXp.ToolTip = $"{xpToNext:n0} to next level";
+                TextBoxProdXp.ToolTip = $"{xpToNext:n0} to level {currentProdLvl.Value + 1}";
             }
         }
 
@@ -66,6 +54,11 @@ namespace XpHelper
             {
                 MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Topmost = CheckBoxTopmost.IsChecked == true;
         }
     }
 }

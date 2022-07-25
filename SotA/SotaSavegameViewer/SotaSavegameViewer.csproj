@@ -5,15 +5,10 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>SotA.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="SotA.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Google.Apis.Docs.v1" Version="1.57.0.2696" />
+    <ProjectReference Include="..\SotaSavegameLib\SotaSavegameLib.csproj" />
   </ItemGroup>
 
 </Project>

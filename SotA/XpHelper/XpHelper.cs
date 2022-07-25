@@ -21,10 +21,12 @@ namespace XpHelper
         }
 
 
-        public static void GetXpValues(out ulong? adventurer, out ulong? producer)
+        public static void GetXpValues(out ulong? adventurer, out ulong? producer, out int? currentAdvLvl, out int? currentProdLvl)
         {
             adventurer = null;
             producer = null;
+            currentAdvLvl = null;
+            currentProdLvl = null;
 
             var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var logPath = Path.Combine(appDataPath, "Portalarium\\Shroud of the Avatar\\ChatLogs");
@@ -48,6 +50,7 @@ namespace XpHelper
                         if (matchProd.Success)
                         {
                             producer = ulong.Parse(matchProd.Groups["amount"].Value, NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
+                            currentProdLvl = XpTable.WhichLevel(producer.Value);
                             haveProd = true;
                         }
                     }
@@ -59,6 +62,7 @@ namespace XpHelper
                         if (matchAdv.Success)
                         {
                             adventurer = ulong.Parse(matchAdv.Groups["amount"].Value, NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
+                            currentAdvLvl = XpTable.WhichLevel(adventurer.Value);
                             haveAdv = true;
                         }
                     }
